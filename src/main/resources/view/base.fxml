@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BaseController">
+   <children>
+      <HBox fx:id="basepane" layoutX="417.0" layoutY="269.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox fx:id="sidepane" maxWidth="300.0" minWidth="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Pane prefHeight="200.0" />
+                  <VBox alignment="CENTER" spacing="30.0" VBox.vgrow="SOMETIMES">
+                     <children>
+                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="50.0" styleClass="menu_button" text="Home">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Button>
+                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#handleTestListButtonAction" prefHeight="50.0" styleClass="menu_button" text="Test List" />
+                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#handleTestCaseButtonAction" prefHeight="50.0" styleClass="menu_button" text="Test Case" />
+                        <Button maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#handleNewTestButtonAction" prefHeight="50.0" styleClass="menu_button" text="New Test" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="16.0" top="16.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets top="150.0" />
+               </padding>
+            </VBox>
+         </children>
+      </HBox>
+      <AnchorPane fx:id="header" prefHeight="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+
+    <stylesheets>
+        <URL value="@../style/colors.css" />
+        <URL value="@../style/base.css" />
+    </stylesheets>
+</AnchorPane>

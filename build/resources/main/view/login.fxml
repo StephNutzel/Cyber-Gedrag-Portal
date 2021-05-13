@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="440.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+
+   <children>
+      <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox fx:id="sidepane" prefWidth="200.0" />
+            <VBox fx:id="mainpane" alignment="CENTER" spacing="16.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="login_lable" text="LOGIN" textFill="WHITE" />
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <TextField HBox.hgrow="SOMETIMES">
+                           <HBox.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </HBox.margin></TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <TextField HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="100.0" right="100.0" />
+                           </HBox.margin></TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <CheckBox mnemonicParsing="false" text="Keep me logged in" textFill="WHITE" />
+                        <Label text="Forgot password?" textFill="WHITE" underline="true" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handelLoginButtonPressed" text="Login" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></VBox>
+         </children>
+      </HBox>
+   </children>
+   <stylesheets>
+      <URL value="@../style/colors.css" />
+      <URL value="@../style/login.css" />
+   </stylesheets>
+</AnchorPane>
