@@ -59,8 +59,6 @@ public class BaseController {
 //            <fx:include fx:id="home" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="home.fxml" HBox.hgrow="ALWAYS" />
 
     public void setupPage() {
-        System.out.println(basepane);
-        System.out.println(homeParent);
         basepane.getChildren().add(homeParent);
         currentPage = HOME;
     }
