@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.test_list_unit">
+   <children>
+      <HBox layoutX="200.0" layoutY="150.0" prefHeight="100.0" prefWidth="352.0" />
+   </children>
+</AnchorPane>
