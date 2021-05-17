@@ -1,3 +1,7 @@
+.text {
+    -fx-fill: -fx-text-color;
+    -fx-font-size: 16;
+}
 
 .menu_button {
     -fx-background-color: -fx-quaternary-color;
@@ -33,11 +37,18 @@
     -fx-background-radius: 24;
 }
 
-.base_center {
-
+.base .base_header {
+    -fx-background-color: -fx-quaternary-color;
+    -fx-background-radius: 24;
 }
 
-.base_header {
+.base .base_header .text {
+    -fx-fill: -fx-header-color;
+    -fx-font-size: 24;
+}
+
+/* Test Case */
+#testCaseSidebar {
     -fx-background-color: -fx-tertiary-color;
     -fx-background-radius: 24;
 }
