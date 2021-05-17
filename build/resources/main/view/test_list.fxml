@@ -24,11 +24,11 @@
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox fx:id="list_filter" prefWidth="139.0" />
-                  <ScrollPane fx:id="list" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                  <ScrollPane style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
                     <content>
                       <AnchorPane fx:id="list_anchor" style="-fx-background-color: transparent;">
                            <children>
-                              <VBox fx:id="list" layoutX="-2.0" prefHeight="320.0" prefWidth="479.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0" />
+                              <VBox fx:id="list" layoutX="-2.0" prefHeight="320.0" prefWidth="479.0" AnchorPane.bottomAnchor="-3000.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-3000.0" AnchorPane.topAnchor="0.0"   />
                            </children>
                         </AnchorPane>
                     </content>

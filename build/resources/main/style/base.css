@@ -41,7 +41,7 @@
     -fx-background-color: -fx-tertiary-color;
     -fx-background-radius: 24;
 }
-
+ /*test_list */
 #list_filter {
     -fx-background-color: -fx-secondary-color;
     -fx-background-radius: 24;
@@ -50,8 +50,9 @@
 #list {
     -fx-background-color: -fx-secondary-color;
 }
+
 .scroll-pane{
-    -fx-background-color:blue;
+    -fx-background-color:transparent;
 }
 #list_anchor{
     -fx-background-color:black;
@@ -60,4 +61,10 @@
 #test_list_unit {
     -fx-background-color:-fx-primary-color;
     -fx-background-radius: 24;
+}
+
+/* text in  test_list_units */
+#test_list_case {
+    -fx-font-size: 16;
+    -fx-text-fill: white;
 }
