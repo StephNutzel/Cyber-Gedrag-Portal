@@ -16,6 +16,11 @@ public class UserService implements Service<Long, User>{
     }
 
     @Override
+    public User read(Long aLong) {
+        return null;
+    }
+
+    @Override
     public void update(Long id) {
         User testUser = users.get(id);
         users.put(testUser.getId(), testUser);
@@ -28,6 +33,6 @@ public class UserService implements Service<Long, User>{
 
     @Override
     public Collection<User> getCollection() {
-        return null;
+        return users.values();
     }
 }

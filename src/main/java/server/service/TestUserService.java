@@ -15,6 +15,11 @@ public class TestUserService implements Service<Long, TestUser> {
     }
 
     @Override
+    public TestUser read(Long id) {
+        return testUsers.get(id);
+    }
+
+    @Override
     public void update(Long id) {
         TestUser testUser = testUsers.get(id);
         testUsers.put(testUser.getId(), testUser);

@@ -59,7 +59,7 @@ public class MainServer {
     }
 
     static {
-        API_URL = "https://23.54.23.54/";
+        API_URL = "https://23.54.23.54";
     }
 
 }

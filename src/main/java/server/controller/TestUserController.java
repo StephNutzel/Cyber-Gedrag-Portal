@@ -15,7 +15,7 @@ public class TestUserController {
         String path = "/testusers/" + testUser.getId();
         // turn to json with post
         testUserService.create(testUser);
-        return new Response<>("Updated user success", HttpStatus.SC_OK);
+        return new Response<>("Created user success", HttpStatus.SC_OK);
     }
 
     public Response<?> updateTestUser(Long id) {
@@ -29,7 +29,7 @@ public class TestUserController {
         String path = "/testusers/" + id;
         // turn to json with delete
         testUserService.delete(id);
-        return new Response<>("Updated user success", HttpStatus.SC_OK);
+        return new Response<>("Deleted user success", HttpStatus.SC_OK);
     }
 
     public Response<?> getTestUsers() {

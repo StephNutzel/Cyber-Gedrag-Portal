@@ -1,6 +1,7 @@
 package server.model;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class TestCase {
 
@@ -35,5 +36,18 @@ public class TestCase {
 
     public void addTestUser(TestUser testUser) {
         this.testUsers.put(testUser.getId(), testUser);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TestCase testCase = (TestCase) o;
+        return id == testCase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
