@@ -1,0 +1,12 @@
+#sidepane {
+    -fx-background-color: -fx-quaternary-color;
+}
+
+#mainpane {
+    -fx-background-color: -fx-secondary-color;
+}
+
+#login_lable {
+    -fx-text-fill: -fx-header-color;
+    -fx-font-size: 26pt;
+}

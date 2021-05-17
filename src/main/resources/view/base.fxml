@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BaseController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.BaseController">
    <children>
       <HBox fx:id="basepane" layoutX="417.0" layoutY="269.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -41,7 +41,7 @@
    </children>
 
     <stylesheets>
-        <URL value="@../style/colors.css" />
-        <URL value="@../style/base.css" />
+        <URL value="@../client/style/colors.css" />
+        <URL value="@../client/style/base.css" />
     </stylesheets>
 </AnchorPane>

@@ -1,0 +1,18 @@
+* {
+    -fx-primary-color: #36393F;
+    -fx-secondary-color: #2F3136;
+    -fx-tertiary-color: #2A2C31;
+    -fx-quaternary-color: #202225;
+
+    -fx-blue-color: #30b0e3;
+
+    -fx-5-color: #00FF00;
+    -fx-4-color: #91FF00;
+    -fx-3-color: #FFFF00;
+    -fx-2-color: #FF9100;
+    -fx-1-color: #FF0000;
+
+    -fx-header-color: #F5F5F5;
+    -fx-sub-header-color: #B4B4B4;
+    -fx-text-color: #B4B4B4;
+}

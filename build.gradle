@@ -4,7 +4,7 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.10'
 }
 
-// --module-path /path/to/JavaFX/lib --add-modules=javafx.controls
+// --client.module-path /path/to/JavaFX/lib --add-modules=javafx.controls
 
 group 'org.example'
 version '1.0-SNAPSHOT'
