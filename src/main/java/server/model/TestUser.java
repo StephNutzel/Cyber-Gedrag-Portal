@@ -2,17 +2,16 @@ package server.model;
 
 import java.util.Objects;
 
-public class TestUser {
+public class TestUser extends AbstractModel {
 
-    private long id;
     private PasswordTest passwordTest;
 
     public TestUser(long id) {
-        this.id = id;
+        super(id);
     }
 
     public TestUser(long id, PasswordTest passwordTest) {
-        this.id = id;
+        super(id);
         this.passwordTest = passwordTest;
     }
 

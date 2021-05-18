@@ -1,23 +1,28 @@
 package server.service;
 
-import com.thaiopensource.xml.em.EntityManager;
-import server.controller.TestCaseController;
 import server.model.TestCase;
 import server.repository.TestCaseRepository;
 import server.util.HttpConnection;
 import server.util.Response;
 
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 
-public interface TestCaseService {
+public class TestCaseService {
 
-    TestCase getTestCaseById(Long id);
-    TestCase insertTestCase(TestCase testCase);
-    void updateTestCase(Long id, TestCase testCase);
-    void deleteTestCase(Long id);
-    List<TestCase> getTestCases();
-    List<TestCase> getTestCasesByUserId(Long id);
+    private TestCaseRepository testCaseRepository;
 
+    public TestCaseService() {
+        testCaseRepository = new TestCaseRepository();
+    }
+
+    public TestCase getById(Long id) {
+        return testCaseRepository.getById(id);
+    }
+
+    public void loadListDB(Long userid) {
+        Response<String> response = HttpConnection.get("/user/" + userid + "/testcases");
+        testCaseRepository.clear();
+        List<TestCase> testCaseList = HttpConnection.jsonToObjectArray(response.getResponse().toString(), TestCase.class);
+        testCaseRepository.saveTestCaseList(testCaseList);
+    }
 }

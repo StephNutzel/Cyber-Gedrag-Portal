@@ -3,39 +3,25 @@ package server.model;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class TestCase {
+public class TestCase extends AbstractModel {
 
-    private long id;
-    private HashMap<Long, TestUser> testUsers;
+    private TestUserCatalog testUserCatalog;
 
     public TestCase(long id) {
-        this.id = id;
-        this.testUsers = new HashMap<>();
-    }
-
-    public TestCase(long id, HashMap<Long, TestUser> testUsers) {
-        this.id = id;
-        this.testUsers = testUsers;
+        super(id);
+        testUserCatalog = new TestUserCatalog();
     }
 
     public long getId() {
         return id;
     }
 
-    public HashMap<Long, TestUser> getTestUsers() {
-        return testUsers;
+    public TestUserCatalog getTestUserCatalog() {
+        return testUserCatalog;
     }
 
-    public void setTestUsers(HashMap<Long, TestUser> testUsers) {
-        this.testUsers = testUsers;
-    }
-
-    public void addTestUsers(HashMap<Long, TestUser> testUsers) {
-        this.testUsers.putAll(testUsers);
-    }
-
-    public void addTestUser(TestUser testUser) {
-        this.testUsers.put(testUser.getId(), testUser);
+    public void setTestUserCatalog(TestUserCatalog testUserCatalog) {
+        this.testUserCatalog = testUserCatalog;
     }
 
     @Override

@@ -5,6 +5,7 @@ import server.model.PasswordTest;
 import server.model.TestCase;
 import server.model.TestUser;
 import server.model.User;
+import server.service.TestCaseService;
 
 import java.util.HashMap;
 
@@ -46,6 +47,9 @@ public class MainServer {
 
         user.setTestCases(testCases);
         selectedTestCase = user.getTestCases().entrySet().iterator().next().getValue();
+
+        TestCaseService testCaseService = new TestCaseService();
+        testCaseService.loadListDB(1L);
     }
 
     public static User attemptLogin(String email, String password) {
@@ -59,7 +63,7 @@ public class MainServer {
     }
 
     static {
-        API_URL = "https://23.54.23.54";
+        API_URL = "http://40.113.140.15";
     }
 
 }
