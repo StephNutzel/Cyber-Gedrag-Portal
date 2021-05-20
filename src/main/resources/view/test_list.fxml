@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.TestListController">
     <children>
-        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" styleClass="base" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="base" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="80.0" styleClass="base_header">
                     <children>
@@ -21,14 +21,35 @@
                         <Insets bottom="8.0" left="64.0" top="8.0" />
                     </padding>
                 </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox fx:id="list_filter" prefWidth="139.0" />
-                  <ScrollPane style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="list_filter" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="200.0">
+                     <children>
+                        <MenuBar>
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="Close" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Edit">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
+                     </children></VBox>
+                  <ScrollPane fx:id="scrollPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                     <content>
-                      <AnchorPane fx:id="list_anchor" style="-fx-background-color: transparent;">
+                      <AnchorPane fx:id="list_anchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                            <children>
-                              <VBox fx:id="list" layoutX="-2.0" prefHeight="320.0" prefWidth="479.0" AnchorPane.bottomAnchor="-3000.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-3000.0" AnchorPane.topAnchor="0.0"   />
+                              <VBox fx:id="list" alignment="CENTER" layoutX="-2.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -42,7 +63,7 @@
                </children>
             </HBox>
             </children></VBox>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" />
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" />
     </children>
     <padding>
         <Insets bottom="30.0" left="30.0" right="30.0" top="180.0" />

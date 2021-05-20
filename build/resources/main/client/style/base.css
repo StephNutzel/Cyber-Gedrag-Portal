@@ -54,13 +54,10 @@
     -fx-background-radius: 24;
 }
 
-.scroll-pane > .viewport {
-    -fx-background-color: transparent;
+#list_anchor{
+    -fx-background-color: blue;
 }
 
-.scroll-pane {
-    -fx-background-color: transparent;
-}
 
 #ratingRoot .text {
     -fx-font-size: 20;
@@ -88,4 +85,49 @@
 
 .color_1 .text {
     -fx-fill: -fx-1-color;
+
 }
+
+/*test_list */
+#list_filter {
+    -fx-background-color: -fx-secondary-color;
+    -fx-background-radius: 24;
+}
+
+#list {
+    -fx-background-color: -fx-secondary-color;
+    -fx-fit-to-width: true;
+}
+
+.scroll-pane{
+    -fx-background-color:transparent;
+}
+#list_anchor{
+    -fx-background-color:transparent;
+}
+
+#test_list_unit {
+    -fx-background-color: -fx-primary-color;
+    -fx-background-radius: 24;
+    -fx-padding: 15;
+    -fx-start-margin: 15;
+    -fx-fit-to-width: true;
+}
+
+/* text in  test_list_units */
+#test_list_case {
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+}
+
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+#scrollPane {
+    -fx-background-color: transparent;
+}
+ #table {
+
+ }

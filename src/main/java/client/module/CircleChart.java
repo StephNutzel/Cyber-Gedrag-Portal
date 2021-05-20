@@ -31,7 +31,7 @@ public abstract class CircleChart {
     }
 
     private void initialize() {
-        FXMLLoader circleChartLoader = new FXMLLoader(getClass().getClassLoader().getResource("view/module/circle_chart.fxml"));
+         circleChartLoader = new FXMLLoader(getClass().getClassLoader().getResource("view/module/circle_chart.fxml"));
         try {
             circleChartRoot = circleChartLoader.load();
         } catch (IOException e) {
