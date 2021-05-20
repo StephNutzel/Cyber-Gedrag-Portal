@@ -90,8 +90,9 @@
 
 /*test_list */
 #list_filter {
-    -fx-background-color: -fx-secondary-color;
+    -fx-background-color: -fx-tertiary-color;
     -fx-background-radius: 24;
+    -fx-end-margin: 20;
 }
 
 #list {
@@ -109,8 +110,6 @@
 #test_list_unit {
     -fx-background-color: -fx-primary-color;
     -fx-background-radius: 24;
-    -fx-padding: 15;
-    -fx-start-margin: 15;
     -fx-fit-to-width: true;
 }
 
@@ -131,3 +130,62 @@
  #table {
 
  }
+
+ /*test list filter*/
+
+
+#testNameBox {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+
+}
+#companyNameBox {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+#activeTestBox {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+.choice-box .menu-item:focused {
+    -fx-background-color: -fx-secondary-color;
+
+}
+#securityScoreOverBox {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+#securityScoreUnderBox {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+
+#testNameLabel {
+
+}
+#companyNameLabel{
+
+}
+#activeTestLabel {
+
+}
+
+#securityScoreOverLabel {
+
+}
+#securityScoreUnderLabel {
+
+}
+#securityScoreLabel {
+
+}
+.choice-box > * {
+
+}
