@@ -17,7 +17,8 @@ public class TestListController {
     @FXML private ScrollPane scrollPane;
     @FXML private ChoiceBox activeTestBox;
 
-    ObservableList<String> activeTestBoxList = FXCollections.observableArrayList("All","Active","Inactive");
+
+
 
 
     public TestListController(){
@@ -26,6 +27,7 @@ public class TestListController {
 
     @FXML
     public void initialize(){
+        ObservableList<String> activeTestBoxList = FXCollections.observableArrayList("All","Active","Inactive");
         TestListUnit testcase1 = new TestListUnit(list, null );
         TestListUnit testcase2 = new TestListUnit(list, null );
         TestListUnit testcase3 = new TestListUnit(list, null );
