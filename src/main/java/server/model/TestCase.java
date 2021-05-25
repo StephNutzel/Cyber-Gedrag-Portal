@@ -1,39 +1,59 @@
 package server.model;
 
+import java.sql.Date;
 import java.util.HashMap;
+import java.util.Objects;
 
-public class TestCase {
+public class TestCase extends AbstractModel {
 
-    private long id;
-    private HashMap<Long, TestUser> testUsers;
+    private Date date;
+    private TestUserCatalog testUserCatalog;
 
-    public TestCase(long id) {
-        this.id = id;
-        this.testUsers = new HashMap<>();
+    public TestCase(Integer id) {
+        super(id);
+        date = new Date(0L);
     }
 
-    public TestCase(long id, HashMap<Long, TestUser> testUsers) {
-        this.id = id;
-        this.testUsers = testUsers;
+    public TestCase(Integer id, Date date) {
+        super(id);
+        this.date = date;
+        testUserCatalog = new TestUserCatalog();
     }
 
     public long getId() {
         return id;
     }
 
-    public HashMap<Long, TestUser> getTestUsers() {
-        return testUsers;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTestUsers(HashMap<Long, TestUser> testUsers) {
-        this.testUsers = testUsers;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public void addTestUsers(HashMap<Long, TestUser> testUsers) {
-        this.testUsers.putAll(testUsers);
+    public TestUserCatalog getTestUserCatalog() {
+        return testUserCatalog;
+    }
+
+    public void setTestUserCatalog(TestUserCatalog testUserCatalog) {
+        this.testUserCatalog = testUserCatalog;
     }
 
     public void addTestUser(TestUser testUser) {
-        this.testUsers.put(testUser.getId(), testUser);
+        testUserCatalog.add(testUser);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TestCase testCase = (TestCase) o;
+        return id == testCase.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

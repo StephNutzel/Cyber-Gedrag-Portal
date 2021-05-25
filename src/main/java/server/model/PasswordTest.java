@@ -13,11 +13,11 @@ public class PasswordTest {
     private int numUnique;
     private float entropy;
 
-    public PasswordTest(long id) {
+    public PasswordTest(Integer id) {
         this.id = id;
     }
 
-    public PasswordTest(long id, int length, int numNumbers, int numLetters, int numSpecialChar, int numUppercase, int numUnique, float entropy) {
+    public PasswordTest(Integer id, int length, int numNumbers, int numLetters, int numSpecialChar, int numUppercase, int numUnique, float entropy) {
         this.id = id;
         this.length = length;
         this.numNumbers = numNumbers;
