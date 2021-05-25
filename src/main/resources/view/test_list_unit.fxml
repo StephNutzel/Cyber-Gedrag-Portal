@@ -17,17 +17,17 @@
                   <Insets left="10.0" />
                </HBox.margin>
                </Label>
-            <Label maxWidth="1.7976931348623157E308" text="355/555" HBox.hgrow="ALWAYS">
+            <Label fx:id="test_list_participants" maxWidth="1.7976931348623157E308" text="355/555" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label maxWidth="1.7976931348623157E308" text="63.3%" HBox.hgrow="ALWAYS">
+            <Label fx:id="test_list_percentage" maxWidth="1.7976931348623157E308" text="63.3%" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Label>
-            <Label maxWidth="1.7976931348623157E308" text="6.1" HBox.hgrow="ALWAYS">
+            <Label fx:id="test_list_score" maxWidth="1.7976931348623157E308" text="6.1" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
