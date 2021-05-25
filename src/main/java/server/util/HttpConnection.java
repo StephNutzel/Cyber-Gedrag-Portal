@@ -1,46 +1,42 @@
 package server.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.httpclient.HttpStatus;
-import server.MainServer;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HttpConnection {
 
+    public static final String API_URL;
+
     public static Response<String> get(String path) {
-        HttpURLConnection connection = setupConnect("GET");
+        HttpURLConnection connection = setupConnect("GET", path);
         return readResponse(connection);
     }
 
-    public static Response<String> put(String path, Object o) {
-        HttpURLConnection connection = setupConnect("PUT");
-        sendRequest(o, connection);
+    public static Response<String> put(String path, String jsonString) {
+        HttpURLConnection connection = setupConnect("PUT", path);
+        sendRequest(jsonString, connection);
         return readResponse(connection);
     }
 
 
-    public static Response<String> post(String path, Object o) {
-        HttpURLConnection connection = setupConnect("POST");
-        sendRequest(o, connection);
+    public static Response<String> post(String path, String jsonString) {
+        HttpURLConnection connection = setupConnect("POST", path);
+        sendRequest(jsonString, connection);
         return readResponse(connection);
     }
 
 
     public static Response<String> delete(String path) {
-        return readResponse(setupConnect("DELETE"));
+        return readResponse(setupConnect("DELETE", path));
     }
 
-    private static HttpURLConnection setupConnect(String method) {
+    private static HttpURLConnection setupConnect(String method, String path) {
         HttpURLConnection connection = null;
         try {
-            URL url = new URL(MainServer.API_URL);
+            URL url = new URL(path);
             connection = (HttpURLConnection)url.openConnection();
             connection.setRequestMethod(method);
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
@@ -52,60 +48,34 @@ public class HttpConnection {
         return connection;
     }
 
-    public static void sendRequest(Object o, HttpURLConnection connection) {
-        String jsonInputString = ObjectToJson(o);
+    public static void sendRequest(String jsonString, HttpURLConnection connection) {
         try(OutputStream os = connection.getOutputStream()) {
-            byte[] input = jsonInputString.getBytes("utf-8");
+            byte[] input = jsonString.getBytes("utf-8");
             os.write(input, 0, input.length);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println(connection.getRequestMethod());
+        System.out.println(connection);
     }
 
     public static Response<String> readResponse(HttpURLConnection connection) {
+        StringBuilder response = new StringBuilder();
         try(BufferedReader br = new BufferedReader(
                 new InputStreamReader(connection.getInputStream(), "utf-8"))) {
-            StringBuilder response = new StringBuilder();
             String responseLine = null;
             while ((responseLine = br.readLine()) != null) {
                 response.append(responseLine.trim());
             }
-            System.out.println(response.toString());
             return new Response<>(response.toString(), HttpStatus.SC_OK);
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+//            System.out.printf("Exception: %s\n", e.getMessage());
         }
         return new Response<>("failed connection", HttpStatus.SC_NOT_FOUND);
     }
 
-    public static <T> List<T> jsonToObjectArray(String json, Class<T> o) {
-        List<T> objects = new ArrayList<>();
-        try {
-            objects = new ObjectMapper().readValue(json, new TypeReference<>(){});
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return objects;
-    }
-
-    public static <T> T JsonToObject(String json, Class<T> o) {
-        try {
-            o = new ObjectMapper().readValue(json, o.getClass());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return (T) o;
-    }
-
-    public static String ObjectToJson(Object o) {
-        String json = null;
-        try {
-            json = new ObjectMapper().writeValueAsString(o);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return json;
+    static {
+        API_URL = "http://40.113.140.15:3000";
     }
 }

@@ -26,7 +26,7 @@ public class TestCaseController {
     private TestCase testCase;
 
     public TestCaseController() {
-        testCase = MainServer.user.getTestCases().get(1L);
+        testCase = MainServer.tester.getActiveTestCase();
     }
 
     @FXML

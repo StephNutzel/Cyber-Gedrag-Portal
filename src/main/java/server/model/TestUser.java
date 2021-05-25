@@ -6,11 +6,11 @@ public class TestUser extends AbstractModel {
 
     private PasswordTest passwordTest;
 
-    public TestUser(long id) {
+    public TestUser(Integer id) {
         super(id);
     }
 
-    public TestUser(long id, PasswordTest passwordTest) {
+    public TestUser(Integer id, PasswordTest passwordTest) {
         super(id);
         this.passwordTest = passwordTest;
     }

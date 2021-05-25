@@ -1,10 +1,12 @@
 package server.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public abstract class AbstractModel {
 
-    protected long id;
+    public Integer id;
 
-    public AbstractModel(long id) {
+    public AbstractModel(Integer id) {
         this.id = id;
     }
 
@@ -12,7 +14,7 @@ public abstract class AbstractModel {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }
