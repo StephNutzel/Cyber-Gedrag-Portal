@@ -104,6 +104,15 @@
     -fx-fit-to-width: true;
 }
 
+#list2 {
+    -fx-background-color: -fx-secondary-color;
+    -fx-fit-to-width: true;
+}
+
+#scrollPane2 {
+
+}
+
 .scroll-pane{
     -fx-background-color:transparent;
 }
@@ -131,6 +140,11 @@
 #scrollPane {
     -fx-background-color: transparent;
 }
+
+#scrollPane2 {
+    -fx-background-color: transparent;
+}
+
  #table {
 
  }
