@@ -1,5 +1,6 @@
 package client.controller;
 
+import client.MainClient;
 import client.module.TestListUnit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +24,7 @@ public class TestListUnitController {
     @FXML private Label test_list_score;
 
     private int tested;
-
+    private TestCase testCase;
 
     public TestListUnitController(){
 
@@ -44,8 +45,17 @@ public class TestListUnitController {
     public void initialize(){
 
 
-
     }
+
+    public void setTestCase(TestCase testCase){
+        this.testCase = testCase;
+    }
+
+    public void handleTestCaseClicked(){
+        MainServer.tester.setActiveTestCase(testCase);
+        MainClient.baseController.handleTestCaseButtonAction();
+    }
+
 
 }
 

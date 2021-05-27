@@ -1,5 +1,6 @@
 package client.module;
 
+import client.controller.BaseController;
 import client.controller.CircleChartController;
 import client.controller.TestListUnitController;
 import javafx.fxml.FXML;
@@ -25,15 +26,14 @@ public class TestListUnit {
     @FXML private Label test_list_percentage;
     @FXML private Label test_list_score;
 
+
     public TestListUnit(VBox parent, TestCase testCase) {
-    this.parent = parent;
-    this.testCase = testCase;
-    initialize();
+        this.parent = parent;
+        this.testCase = testCase;
+        initialize();
     }
 
-    public void setTested(int tested){
 
-    }
 
     private void initialize() {
         testListUnitLoader = new FXMLLoader(getClass().getClassLoader().getResource("view/test_list_unit.fxml"));
@@ -43,6 +43,7 @@ public class TestListUnit {
             e.printStackTrace();
         }
         testListUnitController = testListUnitLoader.getController();
+        testListUnitController.setTestCase(testCase);
         parent.getChildren().add(TestListUnitRoot);
 
     }
@@ -50,5 +51,8 @@ public class TestListUnit {
     public TestListUnitController getController() {
         return testListUnitController;
     }
+
+
+
 
 }

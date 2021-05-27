@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="70.0" minHeight="70.0" minWidth="0.0" prefHeight="70.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.TestListUnitController">
    <children>
-      <HBox fx:id="test_list_unit" alignment="CENTER" layoutX="3.0" maxHeight="75.0" maxWidth="1.7976931348623157E308" minHeight="75.0" minWidth="350.0" prefHeight="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="test_list_unit" alignment="CENTER" layoutX="3.0" maxHeight="75.0" maxWidth="1.7976931348623157E308" minHeight="75.0" minWidth="350.0" onMouseClicked="#handleTestCaseClicked" prefHeight="75.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
                <Label fx:id="test_list_case" maxWidth="1.7976931348623157E308" text="test case 1" HBox.hgrow="ALWAYS">
 

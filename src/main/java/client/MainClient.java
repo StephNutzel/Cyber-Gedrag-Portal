@@ -1,5 +1,6 @@
 package client;
 
+import client.controller.BaseController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,7 @@ public class MainClient extends Application {
 
     private static Parent root;
     private static Stage primaryStage;
+    public  static BaseController baseController;
 
     public static void main(String[] args) {
         launch(args);
@@ -54,6 +56,7 @@ public class MainClient extends Application {
             primaryStage.setTitle("Human Cyber Lab: Portal");
             FXMLLoader loader = new FXMLLoader(MainClient.class.getClassLoader().getResource("view/base.fxml"));
             root = loader.load();
+            baseController = loader.getController();
             Scene homeScene = new Scene(root, screen_width, screen_height);
             primaryStage.setX((Screen.getPrimary().getBounds().getWidth() - screen_width)/2);
             primaryStage.setY((Screen.getPrimary().getBounds().getHeight() - screen_height)/2);

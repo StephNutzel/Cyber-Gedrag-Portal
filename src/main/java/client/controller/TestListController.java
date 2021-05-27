@@ -12,6 +12,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import org.junit.Test;
+import org.junit.validator.TestClassValidator;
 import server.MainServer;
 import server.model.TestCase;
 
@@ -42,7 +44,6 @@ public class TestListController {
             TestListUnitController testListUnitController = testListUnit.getController();
             testListUnitController.setTested(tested);
             testListUnitController.populate();
-
         }
 
 
@@ -55,9 +56,14 @@ public class TestListController {
         bindScrollpaneWidth();
     }
 
+
+
+
+
     public void bindScrollpaneWidth(){
         ReadOnlyDoubleProperty numberBinding =  scrollPane.widthProperty();
         list.styleProperty().bind(Bindings.concat("-fx-pref-width: ", numberBinding.add(-10)));
     }
+
 
 }
