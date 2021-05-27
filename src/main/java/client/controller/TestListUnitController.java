@@ -22,18 +22,26 @@ public class TestListUnitController {
     @FXML private Label test_list_percentage;
     @FXML private Label test_list_score;
 
+    private int tested;
+
 
     public TestListUnitController(){
 
     }
 
+    public void setTested(int tested){
+        this.tested = tested;
+    }
+
+    public void populate() {
+        test_list_case.setText("testcase");
+        test_list_participants.setText(String.valueOf(tested));
+        test_list_percentage.setText("10%");
+        test_list_score.setText("6.3");
+    }
+
     @FXML
     public void initialize(){
-
-        test_list_case.setText("test case 12");
-        test_list_participants.setText("356");
-        test_list_percentage.setText("63,4%");
-        test_list_score.setText("6.2");
 
 
 

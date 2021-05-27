@@ -2,8 +2,10 @@ package client.module;
 
 import client.controller.CircleChartController;
 import client.controller.TestListUnitController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import server.model.TestCase;
 
@@ -18,10 +20,19 @@ public class TestListUnit {
     private FXMLLoader testListUnitLoader;
     public TestListUnitController testListUnitController;
 
-    public TestListUnit(VBox parent, TestCase testCase, int tested) {
+    @FXML private Label test_list_case;
+    @FXML private Label test_list_participants;
+    @FXML private Label test_list_percentage;
+    @FXML private Label test_list_score;
+
+    public TestListUnit(VBox parent, TestCase testCase) {
     this.parent = parent;
     this.testCase = testCase;
     initialize();
+    }
+
+    public void setTested(int tested){
+
     }
 
     private void initialize() {
@@ -39,4 +50,5 @@ public class TestListUnit {
     public TestListUnitController getController() {
         return testListUnitController;
     }
+
 }
