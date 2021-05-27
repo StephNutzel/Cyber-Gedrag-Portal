@@ -11,7 +11,7 @@
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="80.0" styleClass="base_header">
                     <children>
-                        <Label text="New Test" textFill="WHITE">
+                        <Label text="Create new test" textFill="WHITE">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -21,7 +21,114 @@
                         <Insets bottom="8.0" left="64.0" top="8.0" />
                     </padding>
                 </HBox>
-                <Pane prefHeight="200.0" prefWidth="200.0" styleClass="base_center" />
+            <VBox maxWidth="500.0">
+               <children>
+                  <FlowPane maxWidth="1.7976931348623157E308" prefHeight="400.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label fx:id="newTestNameLabel" minWidth="150.0" text="Test name">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="newTestNameBox">
+                                 <opaqueInsets>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <Label fx:id="newTestAmountLabel" minWidth="150.0" text="Amount to test">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="newTestAmountBox">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <Label fx:id="DepartmentNamelabel" minWidth="150.0" text="Department Name">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="DepartmentName">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <Button fx:id="newTestCreate" mnemonicParsing="false" text="Create test">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Label fx:id="newTestIdLabel" text="Test ID">
+                     <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ToolBar fx:id="newTestIdBox" maxWidth="500.0" prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                      <Button fx:id="newTestIdCopy" mnemonicParsing="false" text="copy">
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Button>
+                        <Label fx:id="newTestId" text="N/A">
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Label>
+                    </items>
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
+                     </VBox.margin>
+                  </ToolBar>
+                  <Label text="Website link">
+                     <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ToolBar fx:id="newTestWebBox" prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                      <Button fx:id="newTestWebCopy" mnemonicParsing="false" text="copy">
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Button>
+                        <Label fx:id="newTestWeb" text="N/A">
+                           <padding>
+                              <Insets left="10.0" right="10.0" />
+                           </padding>
+                        </Label>
+                    </items>
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                     </VBox.margin>
+                  </ToolBar>
+               </children>
+               <padding>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </padding>
+            </VBox>
             </children></VBox>
     </children>
     <padding>

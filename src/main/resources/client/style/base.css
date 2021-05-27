@@ -207,3 +207,76 @@
 .choice-box > * {
 
 }
+
+/* new test*/
+#newTestNameLabel{
+
+}
+
+#newTestNameBox{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+
+}
+
+#newTestAmountLabel{
+
+}
+
+#newTestAmountBox{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+
+}
+
+
+#newTestCreate {
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
+#newTestIdLabel{
+
+
+}
+
+#newTestIdBox{
+-fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+
+}
+#newTestId{
+
+}
+#newTestIdCopy{
+    -fx-background-color: -fx-tertiary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
+
+#newTestWebBox{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+
+}
+#newTestWeb{
+
+}
+#newTestWebCopy{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
+
+#DepartmentNamelabel{
+
+}
+
+#DepartmentName{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
