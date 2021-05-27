@@ -18,7 +18,7 @@ public class TestListUnit {
     private FXMLLoader testListUnitLoader;
     public TestListUnitController testListUnitController;
 
-    public TestListUnit(VBox parent, TestCase testCase) {
+    public TestListUnit(VBox parent, TestCase testCase, int tested) {
     this.parent = parent;
     this.testCase = testCase;
     initialize();

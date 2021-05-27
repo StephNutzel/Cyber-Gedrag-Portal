@@ -226,6 +226,7 @@
 #newTestAmountBox{
     -fx-background-color: -fx-primary-color ;
     -fx-background-radius: 12;
+    -fx-text-fill: white;
 
 }
 
@@ -243,6 +244,7 @@
 #newTestIdBox{
 -fx-background-color: -fx-primary-color ;
     -fx-background-radius: 12;
+    -fx-text-fill: white;
 
 }
 #newTestId{
@@ -257,13 +259,14 @@
 #newTestWebBox{
     -fx-background-color: -fx-primary-color ;
     -fx-background-radius: 12;
+    -fx-text-fill: white;
 
 }
 #newTestWeb{
 
 }
 #newTestWebCopy{
-    -fx-background-color: -fx-primary-color ;
+    -fx-background-color: -fx-tertiary-color ;
     -fx-background-radius: 12;
     -fx-text-fill: white;
 }

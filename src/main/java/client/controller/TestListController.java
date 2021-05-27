@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import server.MainServer;
+import server.model.TestCase;
 
 public class TestListController {
     @FXML private VBox listFilter;
@@ -28,16 +30,9 @@ public class TestListController {
     @FXML
     public void initialize(){
         ObservableList<String> activeTestBoxList = FXCollections.observableArrayList("All","Active","Inactive");
-
-        TestListUnit testcase1 = new TestListUnit(list, null );
-        TestListUnit testcase2 = new TestListUnit(list, null );
-        TestListUnit testcase3 = new TestListUnit(list, null );
-        TestListUnit testcase4 = new TestListUnit(list, null );
-        TestListUnit testcase5 = new TestListUnit(list, null );
-        TestListUnit testcase6 = new TestListUnit(list, null );
-        TestListUnit testcase7 = new TestListUnit(list, null );
-        TestListUnit testcase8 = new TestListUnit(list, null );
-
+        for(TestCase testCase : MainServer.tester.getTestCaseCatalog().findAll()){
+            TestListUnit testcase = new TestListUnit(list, testCase );
+        }
 
 
 
