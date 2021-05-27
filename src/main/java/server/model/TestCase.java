@@ -1,20 +1,30 @@
 package server.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.Objects;
 
 public class TestCase extends AbstractModel {
 
+    @JsonProperty("created_on")
     private Date date;
     private TestUserCatalog testUserCatalog;
 
-    public TestCase(Integer id) {
-        super(id);
+    public TestCase() {
+        super(-1);
         date = new Date(0L);
+        testUserCatalog = new TestUserCatalog();
     }
 
-    public TestCase(Integer id, Date date) {
+    public TestCase(int id) {
+        super(id);
+        date = new Date(0L);
+        testUserCatalog = new TestUserCatalog();
+    }
+
+    public TestCase(int id, Date date) {
         super(id);
         this.date = date;
         testUserCatalog = new TestUserCatalog();
@@ -55,5 +65,13 @@ public class TestCase extends AbstractModel {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "TestCase{" +
+                "date=" + date +
+                ", id=" + id +
+                '}';
     }
 }

@@ -1,10 +1,15 @@
 package server.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.*;
+import server.model.TestCase;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Json {
 
@@ -20,6 +25,18 @@ public class Json {
         return objectMapper.readTree(str);
     }
 
+    public static List<JsonNode> parseArray(String str) throws JsonProcessingException {
+        return objectMapper.readValue(str, new TypeReference<List<JsonNode>>(){});
+    }
+
+    public static <T> List<T> fromJsonArray(List<JsonNode> nodeList, Class<T> tClass) throws JsonProcessingException {
+        List<T> list = new ArrayList<>();
+        for (JsonNode node : nodeList ) {
+            list.add(objectMapper.treeToValue(node, tClass));
+        }
+        return list;
+    }
+
     public static <T> T fromJson(JsonNode node, Class<T> tClass) throws JsonProcessingException {
         return objectMapper.treeToValue(node, tClass);
     }
@@ -29,8 +46,18 @@ public class Json {
     }
 
     public static String stringify(JsonNode node) throws JsonProcessingException {
-        ObjectWriter objectWriter = objectMapper.writer();
+        return generateString(node, false);
+    }
 
+    public static String prettyPrint(JsonNode node) throws JsonProcessingException {
+        return generateString(node, true);
+    }
+
+    private static String generateString(JsonNode node, boolean pretty) throws JsonProcessingException {
+        ObjectWriter objectWriter = objectMapper.writer();
+        if (pretty) {
+            objectWriter = objectWriter.with(SerializationFeature.INDENT_OUTPUT);
+        }
         return objectWriter.writeValueAsString(node);
     }
 }

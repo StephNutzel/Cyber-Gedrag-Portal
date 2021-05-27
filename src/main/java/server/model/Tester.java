@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Tester {
 
-    private Integer id;
+    private int id;
     private String name;
     private String email;
     private TestCaseCatalog testCaseCatalog;
@@ -19,7 +19,7 @@ public class Tester {
         activeTestCase = null;
     }
 
-    public Tester(Integer id, String name, String email) {
+    public Tester(int id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -31,7 +31,7 @@ public class Tester {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

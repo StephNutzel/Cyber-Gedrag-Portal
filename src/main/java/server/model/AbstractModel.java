@@ -4,9 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public abstract class AbstractModel {
 
-    public Integer id;
+    @JsonProperty("id")
+    public int id;
 
-    public AbstractModel(Integer id) {
+    public AbstractModel(int id) {
         this.id = id;
     }
 
@@ -14,7 +15,7 @@ public abstract class AbstractModel {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

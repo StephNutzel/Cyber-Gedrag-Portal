@@ -28,6 +28,7 @@ public class TestListController {
     @FXML
     public void initialize(){
         ObservableList<String> activeTestBoxList = FXCollections.observableArrayList("All","Active","Inactive");
+
         TestListUnit testcase1 = new TestListUnit(list, null );
         TestListUnit testcase2 = new TestListUnit(list, null );
         TestListUnit testcase3 = new TestListUnit(list, null );

@@ -55,8 +55,6 @@ public class HttpConnection {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(connection.getRequestMethod());
-        System.out.println(connection);
     }
 
     public static Response<String> readResponse(HttpURLConnection connection) {
@@ -68,9 +66,8 @@ public class HttpConnection {
                 response.append(responseLine.trim());
             }
             return new Response<>(response.toString(), HttpStatus.SC_OK);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
-//            System.out.printf("Exception: %s\n", e.getMessage());
         }
         return new Response<>("failed connection", HttpStatus.SC_NOT_FOUND);
     }

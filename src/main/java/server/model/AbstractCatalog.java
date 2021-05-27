@@ -2,6 +2,7 @@ package server.model;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class AbstractCatalog<T extends AbstractModel> {
 
@@ -49,6 +50,15 @@ public abstract class AbstractCatalog<T extends AbstractModel> {
 
     public void setAvgGrade(float grade) {
         this.avgGrade = grade;
+    }
+
+    @Override
+    public String toString() {
+        String res = "";
+        for(Map.Entry<Long, T> map: hashMap.entrySet()) {
+            res += (map.getValue() + "\n");
+        }
+        return res;
     }
 
 }

@@ -6,17 +6,17 @@ public class TestUser extends AbstractModel {
 
     private PasswordTest passwordTest;
 
-    public TestUser(Integer id) {
+    public TestUser() {
+        super(-1);
+    }
+
+    public TestUser(int id) {
         super(id);
     }
 
-    public TestUser(Integer id, PasswordTest passwordTest) {
+    public TestUser(int id, PasswordTest passwordTest) {
         super(id);
         this.passwordTest = passwordTest;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public PasswordTest getPasswordTest() {
@@ -38,5 +38,12 @@ public class TestUser extends AbstractModel {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "TestUser{" +
+                "id=" + id +
+                '}';
     }
 }
