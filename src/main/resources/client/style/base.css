@@ -88,6 +88,10 @@
 
 }
 
+.ratingbar {
+    -fx-background-color: -fx-blue-color;
+}
+
 /*test_list */
 #list_filter {
     -fx-background-color: -fx-tertiary-color;

@@ -8,10 +8,12 @@ public class TestUser extends AbstractModel {
 
     public TestUser() {
         super(-1);
+        this.passwordTest = new PasswordTest();
     }
 
     public TestUser(int id) {
         super(id);
+        this.passwordTest = new PasswordTest();
     }
 
     public TestUser(int id, PasswordTest passwordTest) {

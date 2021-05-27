@@ -82,6 +82,9 @@ public class Communication {
 
         for(TestUser testUser : testUsers) {
             loadPasswordTest(testUser);
+            if(testUser.getPasswordTest() != null)
+                testUser.getPasswordTest().calculateGrade();
+            System.out.println(testUser.getPasswordTest());
         }
 
         testCase.getTestUserCatalog().addList(testUsers);
@@ -112,7 +115,7 @@ public class Communication {
             e.printStackTrace();
             return;
         }
-        System.out.println(passwordTest);
+        testUser.setPasswordTest(passwordTest);
     }
 
 }

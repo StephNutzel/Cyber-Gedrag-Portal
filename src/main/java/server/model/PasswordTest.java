@@ -17,9 +17,13 @@ public class PasswordTest {
     @JsonProperty("sum_special_char")
     private int numSpecialChar;
     private int numUppercase;
+    @JsonProperty("sum_unique")
     private int numUnique;
     @JsonProperty("entropy")
     private float entropy;
+    @JsonProperty("has_order")
+    private boolean hasOrder;
+    private float grade;
 
     public PasswordTest() {
         this.id = -1;
@@ -103,8 +107,20 @@ public class PasswordTest {
         this.entropy = entropy;
     }
 
-    public float getGrade() {
-        return (float)Math.random() * 10F;
+    public float getGrade() { return grade; }
+
+    public void setGrade(float grade) { this.grade = grade; }
+
+    public void calculateGrade() {
+        float newGrade = 0;
+        if(entropy < 0) {
+            return;
+        }
+        newGrade = this.entropy / 128 * 10;
+        if (newGrade > 10) {
+            newGrade = 10;
+        }
+        this.grade = newGrade;
     }
 
     @Override
@@ -131,6 +147,8 @@ public class PasswordTest {
                 ", numUppercase=" + numUppercase +
                 ", numUnique=" + numUnique +
                 ", entropy=" + entropy +
+                ", hasOrder=" + hasOrder +
+                ", grade=" + grade +
                 '}';
     }
 }
