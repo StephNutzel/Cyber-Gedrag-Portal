@@ -9,7 +9,7 @@
 
 .chart-pie {
     -fx-border-width: 0px;
-    -fx-background-color: derive(-fx-pie-color, 0%)
+    -fx-background-color: derive(-fx-pie-color, 0%);
 }
 
 #circle {

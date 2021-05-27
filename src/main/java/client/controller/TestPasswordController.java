@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import client.module.CircleChartGrade;
-import server.model.PasswordTest;
+import server.MainServer;
+import server.model.TestCase;
+import server.model.TestUser;
 
 import java.io.IOException;
 
@@ -19,6 +21,9 @@ public class TestPasswordController {
     private PasswordRatingController passwordRatingController;
     private PasswordRatingController passwordStatisticsController;
 
+    private float avgGrade;
+    private int amount;
+
     @FXML
     private void initialize() {
         initStrength();
@@ -27,7 +32,17 @@ public class TestPasswordController {
     }
 
     private void initStrength() {
-        CircleChartGrade passwordChart = new CircleChartGrade(passwordStrength, "Password Strength", 6.3F, 50);
+        System.out.println(MainServer.tester.getActiveTestCase());
+        System.out.println(MainServer.tester.getActiveTestCase().getTestUserCatalog().findAll().size());
+
+        for(TestUser user : MainServer.tester.getActiveTestCase().getTestUserCatalog().findAll()) {
+            if (user.getPasswordTest() != null && user.getPasswordTest().getGrade() > 0) {
+                float grade = user.getPasswordTest().getGrade();
+                avgGrade = ((avgGrade * amount) + grade)/++amount;
+                System.out.println(avgGrade);
+            }
+        }
+        CircleChartGrade passwordChart = new CircleChartGrade(passwordStrength, "Password Strength", avgGrade, amount);
         passwordChartController = passwordChart.getController();
     }
 

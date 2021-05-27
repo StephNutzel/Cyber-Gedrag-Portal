@@ -35,7 +35,7 @@ public class Communication {
     public static void loadTestCases() {
         TestCaseCatalog testCaseCatalog = new TestCaseCatalog();
         MainServer.tester.setTestCaseCatalog(testCaseCatalog);
-        String jsonString = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", MainServer.tester.getEmail(), "passwordtemp"/*tester.getPassword()*/);
+        String jsonString = String.format("{\"id\":%d,\"email\":\"%s\",\"password\":\"%s\"}", MainServer.tester.getId(), MainServer.tester.getEmail(), "passwordtemp"/*tester.getPassword()*/);
         String path = HttpConnection.API_URL + "/tester/test_cases";
         Response<String> response = HttpConnection.post(path, jsonString);
         if(response.getStatus() != 200) {
@@ -57,19 +57,19 @@ public class Communication {
             testCaseCatalog.add(testCase);
         }
         MainServer.tester.setTestCaseCatalog(testCaseCatalog);
+        MainServer.tester.setActiveTestCase(testCaseCatalog.findAll().get(0));
     }
 
     public static void loadTestUsers(TestCase testCase) {
         TestUserCatalog testUserCatalog = new TestUserCatalog();
         testCase.setTestUserCatalog(testUserCatalog);
-        String jsonString = String.format("{\"email\":\"%s\",\"password\":\"%s\",\"test_case_id\":%d}", MainServer.tester.getEmail(), "passwordtemp"/*tester.getPassword()*/, testCase.getId());
+        String jsonString = String.format("{\"id\":%d,\"email\":\"%s\",\"password\":\"%s\",\"test_case_id\":%d}", MainServer.tester.getId(), MainServer.tester.getEmail(), "passwordtemp"/*tester.getPassword()*/, testCase.getId());
         String path = HttpConnection.API_URL + "/test_case/test_users";
         Response<String> response = HttpConnection.post(path, jsonString);
         if(response.getStatus() != 200) {
             return;
         }
         List<TestUser> testUsers = null;
-        System.out.println(response.getBody());
 
         try {
             List<JsonNode> nodeList = Json.parseArray(response.getBody());
@@ -82,19 +82,18 @@ public class Communication {
 
         for(TestUser testUser : testUsers) {
             loadPasswordTest(testUser);
-            if(testUser.getPasswordTest() != null)
+            if(testUser.getPasswordTest() != null) {
                 testUser.getPasswordTest().calculateGrade();
-            System.out.println(testUser.getPasswordTest());
+            }
         }
 
         testCase.getTestUserCatalog().addList(testUsers);
-        System.out.println(testCase.getTestUserCatalog());
     }
 
     public static void loadPasswordTest(TestUser testUser) {
         PasswordTest passwordTest = null;
         testUser.setPasswordTest(passwordTest);
-        String jsonString = String.format("{\"email\":\"%s\",\"password\":\"%s\",\"id\":%d}", MainServer.tester.getEmail(), "passwordtemp"/*tester.getPassword()*/, testUser.getId());
+        String jsonString = String.format("{\"id\":%d,\"email\":\"%s\",\"password\":\"%s\",\"id\":%d}", MainServer.tester.getId(), MainServer.tester.getEmail(), "passwordtemp"/*tester.getPassword()*/, testUser.getId());
         String path = HttpConnection.API_URL + "/test_user/password_test";
         Response<String> response = HttpConnection.post(path, jsonString);
         if(response.getStatus() != 200) {
