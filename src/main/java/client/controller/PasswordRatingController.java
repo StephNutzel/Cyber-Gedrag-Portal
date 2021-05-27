@@ -79,22 +79,10 @@ public class PasswordRatingController {
         ratingAmount2.setText(String.format("%.1f%%", ((float)amount2*100/amountTotal)));
         ratingAmount1.setText(String.format("%.1f%%", ((float)amount1*100/amountTotal)));
 
-        System.out.println(ratingBar1.getPrefWidth());
-        System.out.println((float)amount1/amountTotal);
-        System.out.println(ratingBar1.getPrefWidth() * (float)amount1/amountTotal);
-
         ratingBar5.setMaxWidth(ratingBar5.getPrefWidth() * (float)amount5/amountTotal);
         ratingBar4.setMaxWidth(ratingBar4.getPrefWidth() * (float)amount4/amountTotal);
         ratingBar3.setMaxWidth(ratingBar3.getPrefWidth() * (float)amount3/amountTotal);
         ratingBar2.setMaxWidth(ratingBar2.getPrefWidth() * (float)amount2/amountTotal);
         ratingBar1.setMaxWidth(ratingBar1.getPrefWidth() * (float)amount1/amountTotal);
-
-        System.out.println(ratingBar1.getPrefWidth());
-
-
-        System.out.println(amount1);
-        System.out.println(amountTotal);
-        System.out.println((float)(amount1*100/amountTotal));
-        System.out.println(ratingAmount1.getText());
     }
 }

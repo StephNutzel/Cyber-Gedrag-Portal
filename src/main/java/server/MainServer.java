@@ -26,10 +26,6 @@ public class MainServer {
         }
 
         Communication.loadTestCases();
-        tester.setActiveTestCase(tester.getTestCaseCatalog().findAll().get(0));
-        System.out.println("FULL CATALOG:");
-        System.out.println(tester.getTestCaseCatalog());
-        System.out.println(tester.getActiveTestCase());
         // n.poelenjee@gmail.com
         // $2y$12$kUM4IMH4.K9agpihn/7Wg.zK2u9ww26mDL4NcoQ92IOvzoY6wvy/K
 

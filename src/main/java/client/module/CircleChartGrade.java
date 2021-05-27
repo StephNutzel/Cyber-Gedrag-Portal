@@ -18,6 +18,7 @@ public class CircleChartGrade extends CircleChart {
     public CircleChartGrade(Pane parent, String title) {
         super(parent, title);
         this.grade = 0;
+        this.amount = 0;
         initialize();
     }
 

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Pane;
+import server.MainServer;
 
 import java.io.IOException;
 
