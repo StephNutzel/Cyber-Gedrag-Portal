@@ -24,6 +24,7 @@ public class TestListUnitController {
     @FXML private Label test_list_score;
 
     private int tested;
+    private float securityscore;
     private TestCase testCase;
 
     public TestListUnitController(){
@@ -34,11 +35,13 @@ public class TestListUnitController {
         this.tested = tested;
     }
 
+    public void setSecurityScore(float securityScore) {this.securityscore = securityScore;}
+
     public void populate() {
         test_list_case.setText("testcase");
         test_list_participants.setText(String.valueOf(tested));
         test_list_percentage.setText("10%");
-        test_list_score.setText("6.3");
+        test_list_score.setText(String.valueOf(securityscore));
     }
 
     @FXML

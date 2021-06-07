@@ -60,6 +60,34 @@ public class Communication {
         MainServer.tester.setActiveTestCase(testCaseCatalog.findAll().get(0));
     }
 
+    public static void loadTestCasesFilter() {
+        TestCaseCatalog testCaseCatalog = new TestCaseCatalog();
+        MainServer.tester.setTestCaseCatalog(testCaseCatalog);
+        String jsonString = String.format("{\"id\":%d,\"email\":\"%s\",\"password\":\"%s\"}", MainServer.tester.getId(), MainServer.tester.getEmail(), "passwordtemp"/*tester.getPassword()*/);
+        String path = HttpConnection.API_URL + "/tester/test_cases";
+        Response<String> response = HttpConnection.post(path, jsonString);
+        if(response.getStatus() != 200) {
+            return;
+        }
+
+        List<TestCase> testCases = null;
+        try {
+            List<JsonNode> nodeList = Json.parseArray(response.getBody());
+            testCases = Json.fromJsonArray(nodeList, TestCase.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return;
+        }
+        if(testCases == null) return;
+
+        for(TestCase testCase : testCases) {
+            loadTestUsers(testCase);
+            testCaseCatalog.add(testCase);
+        }
+        MainServer.tester.setTestCaseCatalog(testCaseCatalog);
+        MainServer.tester.setActiveTestCase(testCaseCatalog.findAll().get(0));
+    }
+
     public static void loadTestUsers(TestCase testCase) {
         TestUserCatalog testUserCatalog = new TestUserCatalog();
         testCase.setTestUserCatalog(testUserCatalog);

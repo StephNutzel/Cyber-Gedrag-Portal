@@ -151,6 +151,15 @@
 
  /*test list filter*/
 
+#participantsMinValue{
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+#participantsMaxValue{
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+
 
 #testNameBox {
     -fx-background-color: -fx-primary-color;
@@ -176,11 +185,11 @@
     -fx-background-color: -fx-secondary-color;
 
 }
-#securityScoreOverBox {
+#securityScoreMinimumBox {
     -fx-background-color: -fx-primary-color;
     -fx-text-fill: white;
 }
-#securityScoreUnderBox {
+#securityScoreMaximumBox {
     -fx-background-color: -fx-primary-color;
     -fx-text-fill: white;
 }
@@ -207,6 +216,17 @@
 .choice-box > * {
 
 }
+
+#filterButton{
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+    -fx-border-radius: 12;
+}
+#filterButton:hover{
+-fx-background-color: -fx-quaternary-color;
+-fx-text-fill: -fx-header-color;
+}
+
 
 /* new test*/
 #newTestNameLabel{
