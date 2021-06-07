@@ -24,9 +24,11 @@ public class HomeController {
     public void initialize(){
         for (TestCase testCase : MainServer.tester.getTestCaseCatalog().findAll()){
             int tested = testCase.getTestUserCatalog().findAll().size();
+            float securityScore  = testCase.getTestUserCatalog().getAvgGrade();
             TestListUnit testListUnit = new TestListUnit(list2, testCase);
             TestListUnitController testListUnitController = testListUnit.getController();
             testListUnitController.setTested(tested);
+            testListUnitController.setSecurityScore(securityScore);
             testListUnitController.populate();
 
         }

@@ -27,10 +27,14 @@ public class TestListController {
     @FXML private Label test_list_score;
     @FXML private TextField participantsMinValue;
     @FXML private TextField participantsMaxValue;
+    @FXML private TextField securityScoreMaximumBox;
+    @FXML private TextField securityScoreMinimumBox;
     @FXML private Button filterButton;
 
     int underValue = Integer.MAX_VALUE;
     int overValue = 0;
+    float maxValueFloat = Float.MAX_VALUE;
+    float minValueFloat = 0;
 
 
 
@@ -50,6 +54,8 @@ public class TestListController {
         activeTestBox.setItems(activeTestBoxList);
         initializeTextfield(participantsMaxValue);
         initializeTextfield(participantsMinValue);
+        initializeTextfielddouble(securityScoreMaximumBox);
+        initializeTextfielddouble(securityScoreMinimumBox);
     }
 
         //  participant filter
@@ -91,16 +97,56 @@ public class TestListController {
                 return baseValue;
             }
             return minValueInt;
+    }
 
-
-
+    public TestCaseCatalog filterSecurityScore(TestCaseCatalog testCaseCatalog, float minValue, float maxValue){
+        TestCaseCatalog filteredCatalog = new TestCaseCatalog();
+        Iterator iterator = testCaseCatalog.findAll().listIterator();
+        do {
+            TestCase tempTestCase = (TestCase) iterator.next();
+            float size = tempTestCase.getTestUserCatalog().getAvgGrade();
+            if (size <= minValue && size >= maxValue){
+                filteredCatalog.add(tempTestCase);
+            }
+        }while (iterator.hasNext());
+        return filteredCatalog;
 
     }
+    //securityscore filter
+    public float maxValueSecurity(float baseValue){
+        String maxValueSecurityString = securityScoreMaximumBox.getText();
+        float maxValueFloat;
+        if (maxValueSecurityString.isBlank()) {
+            return baseValue;
+        }
+        maxValueFloat = Float.parseFloat(maxValueSecurityString);
+        if (maxValueFloat < 0) {
+            return baseValue;
+        }
+        return maxValueFloat;
+    }
+
+    public float minValueSecurity(float baseValue){
+        String minValueSecurityString = securityScoreMinimumBox.getText();
+        float minValueFloat = -1;
+        if (minValueSecurityString.isBlank()) {
+            return baseValue;
+        }
+        minValueFloat = Float.parseFloat(minValueSecurityString);
+        if ( minValueFloat < 0) {
+            return baseValue;
+        }
+        return minValueFloat;
+    }
+
+
+
 
     //filter
     public void handleFilter() {
         TestCaseCatalog filteredCatalog = MainServer.tester.getTestCaseCatalog();
         filteredCatalog = filterAmountPart(filteredCatalog, maxValue(underValue), minValue(overValue));
+        filteredCatalog = filterSecurityScore(filteredCatalog,maxValueSecurity(maxValueFloat),minValueSecurity(minValueFloat));
         updateList(filteredCatalog);
 
 
