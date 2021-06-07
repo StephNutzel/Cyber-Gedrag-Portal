@@ -10,6 +10,7 @@ import server.model.TestCase;
 import server.model.TestUser;
 
 import java.io.IOException;
+import java.util.TreeMap;
 
 public class TestPasswordController {
 
@@ -59,7 +60,6 @@ public class TestPasswordController {
     }
 
     private void initStatistics() {
-
     }
 
 }
