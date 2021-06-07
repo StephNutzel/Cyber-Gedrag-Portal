@@ -65,7 +65,7 @@ public class TestListController {
         do {
             TestCase tempTestCase = (TestCase) iterator.next();
             int size = tempTestCase.getTestUserCatalog().findAll().size();
-            if (size <= minValue && size >= maxValue){
+            if (size >= minValue && size <= maxValue){
                 filteredCatalog.add(tempTestCase);
             }
         }while (iterator.hasNext());
