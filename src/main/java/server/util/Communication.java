@@ -145,4 +145,14 @@ public class Communication {
         testUser.setPasswordTest(passwordTest);
     }
 
+    public static void postPersonalisationQuestions(String questionOne, String questionTwo, String questionThree, String questionFour, String questionFive, String testCaseId) {
+        String jsonString = String.format("{\"questionOne\":\"%s\",\"questionTwo\":\"%s\",\"questionThree\":\"%s\",\"questionFour\":\"%s\",\"questionFive\":\"%s\",\"testCase\":\"%s\"}", questionOne, questionTwo, questionThree, questionFour, questionFive, testCaseId);
+        String path = HttpConnection.API_URL + "/newtest/questions";
+        Response<String> response = HttpConnection.post(path, jsonString);
+        if(response.getStatus() != 200) {
+            System.out.println("Server Response: " + response.getStatus());
+            return;
+        }
+        return;
+    }
 }

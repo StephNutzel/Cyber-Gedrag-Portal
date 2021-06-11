@@ -236,6 +236,7 @@
 #newTestNameBox{
     -fx-background-color: -fx-primary-color ;
     -fx-background-radius: 12;
+    -fx-text-fill: white;
 
 }
 
@@ -243,7 +244,7 @@
 
 }
 
-#newTestAmountBox{
+#testAmountBox{
     -fx-background-color: -fx-primary-color ;
     -fx-background-radius: 12;
     -fx-text-fill: white;
@@ -295,7 +296,37 @@
 
 }
 
-#DepartmentName{
+#departmentNameBox{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
+
+#questionOneBox{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
+
+#questionTwoBox{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
+
+#questionThreeBox{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
+
+#questionFourBox{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
+
+#questionFiveBox{
     -fx-background-color: -fx-primary-color ;
     -fx-background-radius: 12;
     -fx-text-fill: white;
