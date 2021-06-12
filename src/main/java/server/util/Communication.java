@@ -145,8 +145,39 @@ public class Communication {
         testUser.setPasswordTest(passwordTest);
     }
 
-    public static void postPersonalisationQuestions(String questionOne, String questionTwo, String questionThree, String questionFour, String questionFive, String testCaseId) {
-        String jsonString = String.format("{\"questionOne\":\"%s\",\"questionTwo\":\"%s\",\"questionThree\":\"%s\",\"questionFour\":\"%s\",\"questionFive\":\"%s\",\"testCase\":\"%s\"}", questionOne, questionTwo, questionThree, questionFour, questionFive, testCaseId);
+    public static void newCompany(String name, int id) {
+        String jsonString = String.format("{\"name\":\"%s\", \"id\":\"%s\"}", name, id);
+        String path = HttpConnection.API_URL + "/newtest/questions";
+        Response<String> response = HttpConnection.post(path, jsonString);
+        if(response.getStatus() != 200) {
+            System.out.println("Server Response: " + response.getStatus());
+            return;
+        }
+        return;
+    }
+    public static void newDepartment(String name, int id, int companyId) {
+        String jsonString = String.format("{\"name\":\"%s\",\"id\":\"%s\",\"companyId\":\"%s\"}", name, id, companyId);
+        String path = HttpConnection.API_URL + "/newtest/questions";
+        Response<String> response = HttpConnection.post(path, jsonString);
+        if(response.getStatus() != 200) {
+            System.out.println("Server Response: " + response.getStatus());
+            return;
+        }
+        return;
+    }
+    public static void newTestCase(int id, String time, int departmentId, String name, boolean state, int amount) {
+        String jsonString = String.format("{\"id\":\"%s\",\"time\":\"%s\",\"department\":\"%s\",\"name\":\"%s\",\"state\":\"%s\",\"amount\":\"%s\"}",id, time, departmentId, name, state, amount);
+        String path = HttpConnection.API_URL + "/newtest/questions";
+        Response<String> response = HttpConnection.post(path, jsonString);
+        if(response.getStatus() != 200) {
+            System.out.println("Server Response: " + response.getStatus());
+            return;
+        }
+        return;
+    }
+
+    public static void postPersonalisationQuestion(String question, int testCaseId, int id) {
+        String jsonString = String.format("{\"question\":\"%s\",\"testCase\":\"%s\", \"id\":\"%s\"}", question, testCaseId, id);
         String path = HttpConnection.API_URL + "/newtest/questions";
         Response<String> response = HttpConnection.post(path, jsonString);
         if(response.getStatus() != 200) {
