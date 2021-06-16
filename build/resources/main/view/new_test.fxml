@@ -32,7 +32,7 @@
                                     <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="newTestNameBox">
+                              <TextField fx:id="testNameBox">
                                  <opaqueInsets>
                                     <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                  </opaqueInsets>
@@ -49,7 +49,7 @@
                                     <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="newTestAmountBox">
+                              <TextField fx:id="testAmountBox">
                                  <VBox.margin>
                                     <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
                                  </VBox.margin>
@@ -63,7 +63,77 @@
                                     <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="DepartmentName">
+                              <TextField fx:id="departmentNameBox">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="92.0">
+                           <children>
+                              <Label fx:id="DepartmentNamelabel1" minWidth="150.0" text="Personalisation Question 1">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="questionOneBox">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="190.0" layoutY="92.0">
+                           <children>
+                              <Label fx:id="DepartmentNamelabel11" minWidth="150.0" text="Personalisation Question 2">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="questionTwoBox">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="174.0">
+                           <children>
+                              <Label fx:id="DepartmentNamelabel111" minWidth="150.0" text="Personalisation Question 3">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="questionThreeBox">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="190.0" layoutY="174.0">
+                           <children>
+                              <Label fx:id="DepartmentNamelabel1111" minWidth="150.0" text="Personalisation Question 4">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="questionFourBox">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="10.0" layoutY="256.0">
+                           <children>
+                              <Label fx:id="DepartmentNamelabel11111" minWidth="150.0" text="Personalisation Question 5">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="questionFiveBox">
                                  <VBox.margin>
                                     <Insets bottom="15.0" left="15.0" right="15.0" top="5.0" />
                                  </VBox.margin>
@@ -75,33 +145,11 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </VBox.margin>
                   </FlowPane>
-                  <Button fx:id="newTestCreate" mnemonicParsing="false" text="Create test">
+                  <Button fx:id="newTestCreate" mnemonicParsing="false" onAction="#handleNewTestButton" text="Create test">
                      <VBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </VBox.margin>
                   </Button>
-                  <Label fx:id="newTestIdLabel" text="Test ID">
-                     <VBox.margin>
-                        <Insets left="15.0" right="15.0" top="15.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ToolBar fx:id="newTestIdBox" maxWidth="500.0" prefHeight="40.0" prefWidth="200.0">
-                    <items>
-                      <Button fx:id="newTestIdCopy" mnemonicParsing="false" text="copy">
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                        </Button>
-                        <Label fx:id="newTestId" text="N/A">
-                           <padding>
-                              <Insets left="10.0" right="10.0" />
-                           </padding>
-                        </Label>
-                    </items>
-                     <VBox.margin>
-                        <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
-                     </VBox.margin>
-                  </ToolBar>
                   <Label text="Website link">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="15.0" />
@@ -109,7 +157,7 @@
                   </Label>
                   <ToolBar fx:id="newTestWebBox" prefHeight="40.0" prefWidth="200.0">
                     <items>
-                      <Button fx:id="newTestWebCopy" mnemonicParsing="false" text="copy">
+                      <Button fx:id="newTestWebCopy" mnemonicParsing="false" onAction="#handleCopyButton" text="copy">
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>

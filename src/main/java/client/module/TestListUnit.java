@@ -34,7 +34,9 @@ public class TestListUnit {
     }
 
 
-
+    /**
+     * initializes a testlistunit for the user
+     */
     private void initialize() {
         testListUnitLoader = new FXMLLoader(getClass().getClassLoader().getResource("view/test_list_unit.fxml"));
         try {

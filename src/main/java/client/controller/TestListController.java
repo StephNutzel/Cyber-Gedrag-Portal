@@ -44,6 +44,9 @@ public class TestListController {
 
     }
 
+    /**
+     * initializes the page for the user
+     */
     @FXML
     public void initialize(){
         ObservableList<String> activeTestBoxList = FXCollections.observableArrayList("All","Active","Inactive");
@@ -58,14 +61,20 @@ public class TestListController {
         initializeTextfielddouble(securityScoreMinimumBox);
     }
 
-        //  participant filter
+    /**
+     * check if testcase num of participants is between minvalue and maxvalue
+     * @param testCaseCatalog:string
+     * @param minValue:int
+     * @param maxValue:int
+     * @return testCatalog
+     */
         public TestCaseCatalog filterAmountPart(TestCaseCatalog testCaseCatalog, int minValue, int maxValue){
         TestCaseCatalog filteredCatalog = new TestCaseCatalog();
         Iterator iterator = testCaseCatalog.findAll().listIterator();
         do {
             TestCase tempTestCase = (TestCase) iterator.next();
             int size = tempTestCase.getTestUserCatalog().findAll().size();
-            if (size <= minValue && size >= maxValue){
+            if (size >= minValue && size <= maxValue){
                 filteredCatalog.add(tempTestCase);
             }
         }while (iterator.hasNext());
@@ -73,6 +82,11 @@ public class TestListController {
 
     }
 
+    /**
+     * check if there is a valid maxvalue entered
+     * @param baseValue:int
+     * @return int
+     */
     public int maxValue(int baseValue){
         String maxValueString = participantsMaxValue.getText();
         int maxValueInt = 0;
@@ -86,6 +100,11 @@ public class TestListController {
             return maxValueInt;
     }
 
+    /**
+     * check if there is a valid minvalue entered
+     * @param baseValue:int
+     * @return int
+     */
     public int minValue(int baseValue){
         String minValueString = participantsMinValue.getText();
         int minValueInt = -1;
@@ -99,6 +118,13 @@ public class TestListController {
             return minValueInt;
     }
 
+    /**
+     * check if testcase avg security score is between minvalue and maxvalue
+     * @param testCaseCatalog:string
+     * @param minValue:double
+     * @param maxValue:double
+     * @return testCaseCatalog
+     */
     public TestCaseCatalog filterSecurityScore(TestCaseCatalog testCaseCatalog, float minValue, float maxValue){
         TestCaseCatalog filteredCatalog = new TestCaseCatalog();
         Iterator iterator = testCaseCatalog.findAll().listIterator();
@@ -112,7 +138,12 @@ public class TestListController {
         return filteredCatalog;
 
     }
-    //securityscore filter
+
+    /**
+     * check if there is a valid maxvalue entered
+     * @param baseValue:double
+     * @return double
+     */
     public float maxValueSecurity(float baseValue){
         String maxValueSecurityString = securityScoreMaximumBox.getText();
         float maxValueFloat;
@@ -126,6 +157,11 @@ public class TestListController {
         return maxValueFloat;
     }
 
+    /**
+     * check if there is a valid minvalue entered
+     * @param baseValue:double
+     * @return double
+     */
     public float minValueSecurity(float baseValue){
         String minValueSecurityString = securityScoreMinimumBox.getText();
         float minValueFloat = -1;
@@ -140,9 +176,9 @@ public class TestListController {
     }
 
 
-
-
-    //filter
+    /**
+     * when the filter button is pressed this methods makes the testcasecatalog go through all of the filters
+     */
     public void handleFilter() {
         TestCaseCatalog filteredCatalog = MainServer.tester.getTestCaseCatalog();
         filteredCatalog = filterAmountPart(filteredCatalog, maxValue(underValue), minValue(overValue));
@@ -152,6 +188,10 @@ public class TestListController {
 
     }
 
+    /**
+     * this function makes sure there can only be entered doubles in the textfield
+     * @param textField:double
+     */
     public void initializeTextfielddouble(TextField textField) {
         textField.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -163,6 +203,11 @@ public class TestListController {
             }
         });
     }
+
+    /**
+     * this function makes sure there can only be entered integers in the textfield
+     * @param textField:int
+     */
     public void initializeTextfield(TextField textField) {
         textField.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -175,7 +220,10 @@ public class TestListController {
         });
     }
 
-
+    /**
+     * after the testCaseCatalog has been through all of the filters this method will update the list for the user
+     * @param testCaseCatalog:String
+     */
     public void updateList(TestCaseCatalog testCaseCatalog){
         list.getChildren().clear();
         for (TestCase testCase : testCaseCatalog.findAll()){
