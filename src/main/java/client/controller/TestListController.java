@@ -64,20 +64,22 @@ public class TestListController {
     /**
      * check if testcase num of participants is between minvalue and maxvalue
      * @param testCaseCatalog:string
-     * @param minValue:int
      * @param maxValue:int
+     * @param minvalue:int
      * @return testCatalog
      */
-        public TestCaseCatalog filterAmountPart(TestCaseCatalog testCaseCatalog, int minValue, int maxValue){
+        public TestCaseCatalog filterAmountPart(TestCaseCatalog testCaseCatalog, int maxValue, int minvalue){
         TestCaseCatalog filteredCatalog = new TestCaseCatalog();
         Iterator iterator = testCaseCatalog.findAll().listIterator();
-        do {
-            TestCase tempTestCase = (TestCase) iterator.next();
-            int size = tempTestCase.getTestUserCatalog().findAll().size();
-            if (size >= minValue && size <= maxValue){
-                filteredCatalog.add(tempTestCase);
-            }
-        }while (iterator.hasNext());
+        if (iterator.hasNext()) {
+            do {
+                TestCase tempTestCase = (TestCase) iterator.next();
+                int size = tempTestCase.getTestUserCatalog().findAll().size();
+                if (size <= maxValue && size >= minvalue) {
+                    filteredCatalog.add(tempTestCase);
+                }
+            } while (iterator.hasNext());
+        }
         return filteredCatalog;
 
     }
@@ -128,13 +130,15 @@ public class TestListController {
     public TestCaseCatalog filterSecurityScore(TestCaseCatalog testCaseCatalog, float minValue, float maxValue){
         TestCaseCatalog filteredCatalog = new TestCaseCatalog();
         Iterator iterator = testCaseCatalog.findAll().listIterator();
-        do {
-            TestCase tempTestCase = (TestCase) iterator.next();
-            float size = tempTestCase.getTestUserCatalog().getAvgGrade();
-            if (size <= minValue && size >= maxValue){
-                filteredCatalog.add(tempTestCase);
-            }
-        }while (iterator.hasNext());
+        if(iterator.hasNext()) {
+            do {
+                TestCase tempTestCase = (TestCase) iterator.next();
+                float size = tempTestCase.getTestUserCatalog().getAvgGrade();
+                if (size <= minValue && size >= maxValue) {
+                    filteredCatalog.add(tempTestCase);
+                }
+            } while (iterator.hasNext());
+        }
         return filteredCatalog;
 
     }
@@ -176,11 +180,31 @@ public class TestListController {
     }
 
 
+//    public TestCaseCatalog TeststateFilter(TestCaseCatalog testCaseCatalog, String testState){
+//        TestCaseCatalog filteredCatalog = new TestCaseCatalog();
+//        Iterator iterator = testCaseCatalog.findAll().listIterator();
+//        do {
+//            TestCase tempTestCase = (TestCase) iterator.next();
+//
+//            if (){
+//
+//            }
+//        }while (iterator.hasNext());
+//        return filteredCatalog;
+//
+//    }
+//    }
+
+
+
+
+
     /**
      * when the filter button is pressed this methods makes the testcasecatalog go through all of the filters
      */
     public void handleFilter() {
         TestCaseCatalog filteredCatalog = MainServer.tester.getTestCaseCatalog();
+        String testState = (String) activeTestBox.getValue();
         filteredCatalog = filterAmountPart(filteredCatalog, maxValue(underValue), minValue(overValue));
         filteredCatalog = filterSecurityScore(filteredCatalog,maxValueSecurity(maxValueFloat),minValueSecurity(minValueFloat));
         updateList(filteredCatalog);
