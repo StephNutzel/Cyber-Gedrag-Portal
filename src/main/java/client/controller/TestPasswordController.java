@@ -33,9 +33,6 @@ public class TestPasswordController {
     }
 
     private void initStrength() {
-        System.out.println(MainServer.tester.getActiveTestCase());
-        System.out.println(MainServer.tester.getActiveTestCase().getTestUserCatalog().findAll().size());
-
         for(TestUser user : MainServer.tester.getActiveTestCase().getTestUserCatalog().findAll()) {
             if (user.getPasswordTest() != null && user.getPasswordTest().getGrade() > 0) {
                 float grade = user.getPasswordTest().getGrade();

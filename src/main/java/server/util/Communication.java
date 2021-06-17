@@ -134,12 +134,10 @@ public class Communication {
                 loadQuestions(personalizeTest);
                 testUser.getPersonalizeTest().calculateGrade();
             }
-            System.out.println(testUser.getPasswordTest());
-            System.out.println(testUser.getPopupTest());
-            System.out.println(testUser.getPersonalizeTest());
-        }
 
+        }
         testCase.getTestUserCatalog().addList(testUsers);
+        testCase.calculateAvgGrade();
     }
 
     public static void loadPasswordTest(TestUser testUser) {

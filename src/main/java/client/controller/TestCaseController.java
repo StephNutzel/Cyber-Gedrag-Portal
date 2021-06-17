@@ -11,6 +11,7 @@ import client.module.CircleChartPercentage;
 import org.junit.Test;
 import server.MainServer;
 import server.model.TestCase;
+import server.model.TestUser;
 
 import java.io.IOException;
 
@@ -32,7 +33,7 @@ public class TestCaseController {
     @FXML
     public void initialize() {
         CircleChartPercentage accountChart = new CircleChartPercentage(accountChartSlot, "Registered", 445, 254);
-        CircleChartGrade averageChart = new CircleChartGrade(averageChartSlot, "Average Grade", 5.34F, 1);
+        CircleChartGrade averageChart = new CircleChartGrade(averageChartSlot, "Average Grade", MainServer.tester.getActiveTestCase().avgGradeTotal, 1);
 
         FXMLLoader passwordLoader = new FXMLLoader(getClass().getClassLoader().getResource("view/test_password.fxml"));
         Parent passwordParent;

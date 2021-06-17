@@ -18,10 +18,10 @@ public class TestCase extends AbstractModel {
     private boolean testState;
 
     private TestUserCatalog testUserCatalog;
-    private float avgGradePasswordTest;
-    private float avgGradePopupTest;
-    private float avgGradePersonalizeTest;
-    private float avgGradeTotal;
+    public float avgGradePasswordTest;
+    public float avgGradePopupTest;
+    public float avgGradePersonalizeTest;
+    public float avgGradeTotal;
 
     public TestCase() {
         super(-1);
@@ -67,32 +67,36 @@ public class TestCase extends AbstractModel {
         float newAvgGradePassword = 0;
         float newAvgGradePersonalizeTest = 0;
         float newAvgGradePopupTest = 0;
-        float newAvgGradeTotal = 0;
         int sizePassword = 0;
         int sizePopup = 0;
         int sizePersonalize = 0;
-        int sizeTotal = 0;
         for(TestUser testUser : testUserCatalog.findAll()) {
-            float grade = testUser.getPasswordTest().getGrade();
-            if(grade > 0) {
+            if(testUser.getPasswordTest() != null) {
+                float grade = testUser.getPasswordTest().getGrade();
                 sizePassword++;
-                newAvgGradePassword += grade;
+                if(grade > 0) {
+                    newAvgGradePassword += grade;
+                }
             }
-            grade = testUser.getPersonalizeTest().getGrade();
-            if(grade > 0) {
+            if(testUser.getPersonalizeTest() != null) {
+                float grade = testUser.getPersonalizeTest().getGrade();
                 sizePersonalize++;
-                newAvgGradePersonalizeTest += grade;
+                if(grade > 0) {
+                    newAvgGradePersonalizeTest += grade;
+                }
             }
-            grade = testUser.getPopupTest().getGrade();
-            if(grade > 0) {
+            if(testUser.getPopupTest() != null) {
+                float grade = testUser.getPopupTest().getGrade();
                 sizePopup++;
-                newAvgGradePopupTest += grade;
+                if(grade > 0) {
+                    newAvgGradePopupTest += grade;
+                }
             }
         }
         avgGradePasswordTest = newAvgGradePassword/sizePassword;
         avgGradePersonalizeTest = newAvgGradePersonalizeTest/sizePersonalize;
         avgGradePopupTest = newAvgGradePopupTest/sizePopup;
-        avgGradeTotal = newAvgGradeTotal/sizeTotal;
+        avgGradeTotal = (avgGradePasswordTest + avgGradePersonalizeTest + avgGradePopupTest) / 3;
     }
 
     @Override
