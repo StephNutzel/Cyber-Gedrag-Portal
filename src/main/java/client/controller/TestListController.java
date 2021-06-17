@@ -20,20 +20,14 @@ public class TestListController {
     @FXML private TextField securityScoreMaximumBox;
     @FXML private TextField securityScoreMinimumBox;
     @FXML private TextField testNameBox;
-    @FXML private TextField companyNameBox;
+//    @FXML private TextField companyNameBox;
 
     int underValue = Integer.MAX_VALUE;
     int overValue = 0;
     float maxValueFloat = Float.MAX_VALUE;
     float minValueFloat = 0;
 
-
-
-
-
-    public TestListController(){
-
-    }
+    public TestListController(){ }
 
     /**
      * initializes the page for the user
@@ -42,8 +36,6 @@ public class TestListController {
     public void initialize(){
         ObservableList<String> activeTestBoxList = FXCollections.observableArrayList("All","Active","Inactive");
         updateList(MainServer.tester.getTestCaseCatalog());
-
-
         activeTestBox.setValue("All");
         activeTestBox.setItems(activeTestBoxList);
         initializeTextfield(participantsMinValue);
@@ -139,16 +131,20 @@ public class TestListController {
      * @return double
      */
     public float maxValueSecurity(float baseValue){
-        String maxValueSecurityString = securityScoreMaximumBox.getText();
-        float maxValueFloat;
-        if (maxValueSecurityString.isBlank()) {
+        return SecurityValue(baseValue, securityScoreMaximumBox);
+    }
+
+    private float SecurityValue(float baseValue, TextField securityBox) {
+        String ValueSecurityString = securityBox.getText();
+        float SecurityValueFloat;
+        if (ValueSecurityString.isBlank()) {
             return baseValue;
         }
-        maxValueFloat = Float.parseFloat(maxValueSecurityString);
-        if (maxValueFloat < 0.0) {
+        SecurityValueFloat = Float.parseFloat(ValueSecurityString);
+        if (SecurityValueFloat < 0) {
             return baseValue;
         }
-        return maxValueFloat;
+        return SecurityValueFloat;
     }
 
     /**
@@ -157,16 +153,7 @@ public class TestListController {
      * @return double
      */
     public float minValueSecurity(float baseValue){
-        String minValueSecurityString = securityScoreMinimumBox.getText();
-        float minValueFloat;
-        if (minValueSecurityString.isBlank()) {
-            return baseValue;
-        }
-        minValueFloat = Float.parseFloat(minValueSecurityString);
-        if ( minValueFloat < 0) {
-            return baseValue;
-        }
-        return minValueFloat;
+        return SecurityValue(baseValue, securityScoreMinimumBox);
     }
 
     /**
@@ -194,14 +181,13 @@ public class TestListController {
             if (testStateCheck == testcaseboolean){
                 filteredCatalog.add(tempTestCase);
             }
-
-        }while (iterator.hasNext());
+        }
+        while (iterator.hasNext());
         return filteredCatalog;
-
     }
 
     /**
-     * Checks if the name of the test equals the name writtes in the filter boxes
+     * Checks if the name of the test equals the name written in the filter boxes
      * @param testCaseCatalog:String
      * @return testCaseCatalog
      */
@@ -217,12 +203,13 @@ public class TestListController {
             else if (testName.equals(tempTestCase.getName())){
                 filteredCatalog.add(tempTestCase);
             }
-        }while (iterator.hasNext());
+        }
+        while (iterator.hasNext());
         return filteredCatalog;
     }
 
 //    /**
-//     * Checks if the name of the company equals the name writtes in the filter boxes
+//     * Checks if the name of the company equals the name written in the filter boxes
 //     * @param testCaseCatalog:string
 //     * @return testCaseCatalog
 //     */
@@ -235,14 +222,12 @@ public class TestListController {
 //            if (companyName.equals("")){
 //                return testCaseCatalog;
 //            }
-//            else if (companyName.equals(tempTestCase.)){
+//            else if (companyName.equals(tempTestCase.getCompanyName)){
 //                filteredCatalog.add(tempTestCase);
 //            }
 //        }while (iterator.hasNext());
 //        return filteredCatalog;
 //    }
-//    }
-
 
     /**
      * when the filter button is pressed this methods makes the testcasecatalog go through all of the filters
@@ -251,15 +236,11 @@ public class TestListController {
         TestCaseCatalog filteredCatalog = MainServer.tester.getTestCaseCatalog();
         String testState = activeTestBox.getValue();
         filteredCatalog = testNameFilter(filteredCatalog);
-//        filteredCatalog =
+//        filteredCatalog =companyNameFilter(filteredCatalog);
         filteredCatalog = testStateFilter(filteredCatalog, testState);
-
-
         filteredCatalog = filterAmountPart(filteredCatalog, maxValue(underValue), minValue(overValue));
         filteredCatalog = filterSecurityScore(filteredCatalog,maxValueSecurity(maxValueFloat),minValueSecurity(minValueFloat));
         updateList(filteredCatalog);
-
-
     }
 
     /**

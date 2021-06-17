@@ -5,19 +5,12 @@ import javafx.scene.layout.VBox;
 import server.MainServer;
 import server.model.TestCase;
 
-import java.awt.*;
-
-
 public class HomeController {
-    @FXML private ScrollPane scrollPane2;
     @FXML private VBox list2;
 
 
     public HomeController(){
-
-
     }
-
 
     @FXML
     public void initialize(){
@@ -27,13 +20,6 @@ public class HomeController {
             double test_goal = testCase.getParticipantGoal();
             double percentageOfGoal = tested/test_goal*100;
             TestListController.populateInfo(testCase, tested, securityScore, percentageOfGoal, list2);
-
         }
-
-
     }
-
-
-
-
 }
