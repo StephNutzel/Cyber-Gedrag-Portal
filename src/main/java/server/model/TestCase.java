@@ -29,6 +29,7 @@ public class TestCase extends AbstractModel {
         name = "";
         participantGoal = -1;
         testUserCatalog = new TestUserCatalog();
+        avgGradeTotal = 0;
     }
 
     public TestCase(int id, Date date, String name, int participantGoal, TestUserCatalog testUserCatalog, float avgGrade) {
@@ -37,6 +38,7 @@ public class TestCase extends AbstractModel {
         this.name = name;
         this.participantGoal = participantGoal;
         this.testUserCatalog = testUserCatalog;
+        this.avgGradeTotal = avgGrade;
     }
 
     public long getId() {

@@ -60,9 +60,8 @@ public class Communication {
         for(TestCase testCase : testCases) {
             loadTestUsers(testCase);
             testCaseCatalog.add(testCase);
+            testCase.calculateAvgGrade();
         }
-        MainServer.tester.setTestCaseCatalog(testCaseCatalog);
-        MainServer.tester.setActiveTestCase(testCaseCatalog.findAll().get(0));
     }
 
 //    public static void loadTestCasesFilter() {
@@ -137,7 +136,6 @@ public class Communication {
 
         }
         testCase.getTestUserCatalog().addList(testUsers);
-        testCase.calculateAvgGrade();
     }
 
     public static void loadPasswordTest(TestUser testUser) {
