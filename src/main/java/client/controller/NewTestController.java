@@ -12,6 +12,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static java.lang.Integer.parseInt;
@@ -56,15 +57,14 @@ public class NewTestController {
 
         if(confirmation.getResult() == ButtonType.YES) {
            try {
-               //todo: er moet gekeken worden of de company en department al bestaan of niet
-                Communication.newCompany(company, companyId);
-                Communication.newDepartment(departmentName, departmentId, companyId);
-                Communication.newTestCase(testcaseId, dateTime, departmentId, testName, true, testAmount);
-                Communication.postPersonalisationQuestion(questionOne, testcaseId, questionId + 1);
-                Communication.postPersonalisationQuestion(questionOne, testcaseId, questionId + 2);
-                Communication.postPersonalisationQuestion(questionOne, testcaseId, questionId + 3);
-                Communication.postPersonalisationQuestion(questionOne, testcaseId, questionId + 4);
-                Communication.postPersonalisationQuestion(questionOne, testcaseId, questionId + 5);
+               Communication.newCompany(company, companyId);
+               Communication.newDepartment(departmentName, departmentId, companyId);
+               Communication.newTestCase(testcaseId, dateTime, departmentId, testName, true, testAmount);
+               Communication.postPersonalisationQuestion(questionOne, testcaseId, questionId + 1);
+               Communication.postPersonalisationQuestion(questionTwo, testcaseId, questionId + 2);
+               Communication.postPersonalisationQuestion(questionThree, testcaseId, questionId + 3);
+               Communication.postPersonalisationQuestion(questionFour, testcaseId, questionId + 4);
+               Communication.postPersonalisationQuestion(questionFive, testcaseId, questionId + 5);
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -331,3 +331,9 @@
     -fx-background-radius: 12;
     -fx-text-fill: white;
 }
+
+#companyBox{
+    -fx-background-color: -fx-primary-color ;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+}
