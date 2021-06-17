@@ -36,6 +36,14 @@ public class PopupTest {
         this.hasClicked = hasClicked;
     }
 
+    public float getGrade() {
+        return grade;
+    }
+
+    public void setGrade(float grade) {
+        this.grade = grade;
+    }
+
     public void calculateGrade() {
         if(this.hasClicked) {
             this.grade = 10;
