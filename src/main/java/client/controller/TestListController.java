@@ -1,35 +1,26 @@
 package client.controller;
 
 import client.module.TestListUnit;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import org.w3c.dom.Text;
 import server.MainServer;
 import server.model.TestCase;
 import server.model.TestCaseCatalog;
 
 import java.util.Iterator;
-import java.util.function.UnaryOperator;
 
 public class TestListController {
-    @FXML private VBox listFilter;
     @FXML private VBox list;
-    @FXML private ScrollPane scrollPane;
-    @FXML private ChoiceBox activeTestBox;
-    @FXML public Label test_list_case;
-    @FXML private Label test_list_participants;
-    @FXML private Label test_list_percentage;
-    @FXML private Label test_list_score;
-    @FXML private TextField participantsMinValue;
+    @FXML private ChoiceBox<String> activeTestBox;
     @FXML private TextField participantsMaxValue;
+    @FXML private TextField participantsMinValue;
     @FXML private TextField securityScoreMaximumBox;
     @FXML private TextField securityScoreMinimumBox;
-    @FXML private Button filterButton;
+    @FXML private TextField testNameBox;
+    @FXML private TextField companyNameBox;
 
     int underValue = Integer.MAX_VALUE;
     int overValue = 0;
@@ -55,8 +46,8 @@ public class TestListController {
 
         activeTestBox.setValue("All");
         activeTestBox.setItems(activeTestBoxList);
-        initializeTextfield(participantsMaxValue);
         initializeTextfield(participantsMinValue);
+        initializeTextfield(participantsMaxValue);
         initializeTextfielddouble(securityScoreMaximumBox);
         initializeTextfielddouble(securityScoreMinimumBox);
     }
@@ -70,10 +61,10 @@ public class TestListController {
      */
         public TestCaseCatalog filterAmountPart(TestCaseCatalog testCaseCatalog, int maxValue, int minvalue){
         TestCaseCatalog filteredCatalog = new TestCaseCatalog();
-        Iterator iterator = testCaseCatalog.findAll().listIterator();
+        Iterator<TestCase> iterator = testCaseCatalog.findAll().listIterator();
         if (iterator.hasNext()) {
             do {
-                TestCase tempTestCase = (TestCase) iterator.next();
+                TestCase tempTestCase = iterator.next();
                 int size = tempTestCase.getTestUserCatalog().findAll().size();
                 if (size <= maxValue && size >= minvalue) {
                     filteredCatalog.add(tempTestCase);
@@ -90,16 +81,20 @@ public class TestListController {
      * @return int
      */
     public int maxValue(int baseValue){
-        String maxValueString = participantsMaxValue.getText();
-        int maxValueInt = 0;
-        if (maxValueString.isBlank()) {
+        return valueCheckerInt(baseValue, participantsMaxValue);
+    }
+
+    private int valueCheckerInt(int baseValue, TextField ParticipantValue) {
+        String participantString = ParticipantValue.getText();
+        int ParticipantValueInt;
+        if (participantString.isBlank()) {
             return baseValue;
         }
-        maxValueInt = Integer.parseInt(maxValueString);
-        if (maxValueInt < 0) {
+        ParticipantValueInt = Integer.parseInt(participantString);
+        if (ParticipantValueInt < 0) {
                 return baseValue;
             }
-            return maxValueInt;
+        return ParticipantValueInt;
     }
 
     /**
@@ -108,16 +103,7 @@ public class TestListController {
      * @return int
      */
     public int minValue(int baseValue){
-        String minValueString = participantsMinValue.getText();
-        int minValueInt = -1;
-        if (minValueString.isBlank()) {
-            return baseValue;
-        }
-            minValueInt = Integer.parseInt(minValueString);
-            if ( minValueInt < 0) {
-                return baseValue;
-            }
-            return minValueInt;
+        return valueCheckerInt(baseValue, participantsMinValue);
     }
 
     /**
@@ -129,14 +115,18 @@ public class TestListController {
      */
     public TestCaseCatalog filterSecurityScore(TestCaseCatalog testCaseCatalog, float minValue, float maxValue){
         TestCaseCatalog filteredCatalog = new TestCaseCatalog();
-        Iterator iterator = testCaseCatalog.findAll().listIterator();
+        Iterator<TestCase> iterator = testCaseCatalog.findAll().listIterator();
         if(iterator.hasNext()) {
             do {
-                TestCase tempTestCase = (TestCase) iterator.next();
-                float size = tempTestCase.getTestUserCatalog().getAvgGrade();
-                if (size <= minValue && size >= maxValue) {
+                TestCase tempTestCase = iterator.next();
+                float grade = tempTestCase.avgGradeTotal;
+                if (Float.isNaN(grade)){
+                    grade = 0.0F;
+                }
+                if (grade <= minValue && grade >= maxValue) {
                     filteredCatalog.add(tempTestCase);
                 }
+
             } while (iterator.hasNext());
         }
         return filteredCatalog;
@@ -155,7 +145,7 @@ public class TestListController {
             return baseValue;
         }
         maxValueFloat = Float.parseFloat(maxValueSecurityString);
-        if (maxValueFloat < 0) {
+        if (maxValueFloat < 0.0) {
             return baseValue;
         }
         return maxValueFloat;
@@ -168,7 +158,7 @@ public class TestListController {
      */
     public float minValueSecurity(float baseValue){
         String minValueSecurityString = securityScoreMinimumBox.getText();
-        float minValueFloat = -1;
+        float minValueFloat;
         if (minValueSecurityString.isBlank()) {
             return baseValue;
         }
@@ -179,24 +169,79 @@ public class TestListController {
         return minValueFloat;
     }
 
+    /**
+     * Checks if the state of the test equals the state named in the filter boxes
+     * @param testCaseCatalog:String
+     * @param testState:String
+     * @return testCaseCatalog
+     */
+    public TestCaseCatalog testStateFilter(TestCaseCatalog testCaseCatalog, String testState){
+        boolean testStateCheck;
+        if (testState.equals("All")) {
+        return testCaseCatalog;
+        }
+        else if (testState.equals("Active")) {
+        testStateCheck = true;
+        }
+        else {
+        testStateCheck = false;
+        }
+        TestCaseCatalog filteredCatalog = new TestCaseCatalog();
+        Iterator<TestCase> iterator = testCaseCatalog.findAll().listIterator();
+        do {
+            TestCase tempTestCase = iterator.next();
+            boolean testcaseboolean = tempTestCase.isTestState();
+            if (testStateCheck == testcaseboolean){
+                filteredCatalog.add(tempTestCase);
+            }
 
-//    public TestCaseCatalog TeststateFilter(TestCaseCatalog testCaseCatalog, String testState){
+        }while (iterator.hasNext());
+        return filteredCatalog;
+
+    }
+
+    /**
+     * Checks if the name of the test equals the name writtes in the filter boxes
+     * @param testCaseCatalog:String
+     * @return testCaseCatalog
+     */
+    public TestCaseCatalog testNameFilter(TestCaseCatalog testCaseCatalog){
+        String testName = testNameBox.getText();
+        TestCaseCatalog filteredCatalog = new TestCaseCatalog();
+        Iterator<TestCase> iterator = testCaseCatalog.findAll().listIterator();
+        do {
+            TestCase tempTestCase = iterator.next();
+            if (testName.equals("")){
+                return testCaseCatalog;
+            }
+            else if (testName.equals(tempTestCase.getName())){
+                filteredCatalog.add(tempTestCase);
+            }
+        }while (iterator.hasNext());
+        return filteredCatalog;
+    }
+
+//    /**
+//     * Checks if the name of the company equals the name writtes in the filter boxes
+//     * @param testCaseCatalog:string
+//     * @return testCaseCatalog
+//     */
+//    public TestCaseCatalog companyNameFilter(TestCaseCatalog testCaseCatalog){
+//        String companyName = companyNameBox.getText();
 //        TestCaseCatalog filteredCatalog = new TestCaseCatalog();
-//        Iterator iterator = testCaseCatalog.findAll().listIterator();
+//        Iterator<TestCase> iterator = testCaseCatalog.findAll().listIterator();
 //        do {
 //            TestCase tempTestCase = (TestCase) iterator.next();
-//
-//            if (){
-//
+//            if (companyName.equals("")){
+//                return testCaseCatalog;
+//            }
+//            else if (companyName.equals(tempTestCase.)){
+//                filteredCatalog.add(tempTestCase);
 //            }
 //        }while (iterator.hasNext());
 //        return filteredCatalog;
-//
 //    }
 //    }
-
-
-
 
 
     /**
@@ -204,7 +249,12 @@ public class TestListController {
      */
     public void handleFilter() {
         TestCaseCatalog filteredCatalog = MainServer.tester.getTestCaseCatalog();
-        String testState = (String) activeTestBox.getValue();
+        String testState = activeTestBox.getValue();
+        filteredCatalog = testNameFilter(filteredCatalog);
+//        filteredCatalog =
+        filteredCatalog = testStateFilter(filteredCatalog, testState);
+
+
         filteredCatalog = filterAmountPart(filteredCatalog, maxValue(underValue), minValue(overValue));
         filteredCatalog = filterSecurityScore(filteredCatalog,maxValueSecurity(maxValueFloat),minValueSecurity(minValueFloat));
         updateList(filteredCatalog);
@@ -217,13 +267,9 @@ public class TestListController {
      * @param textField:double
      */
     public void initializeTextfielddouble(TextField textField) {
-        textField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*\\.\\d*")) {
-                    textField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*\\.\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
     }
@@ -233,13 +279,9 @@ public class TestListController {
      * @param textField:int
      */
     public void initializeTextfield(TextField textField) {
-        textField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    textField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
     }
@@ -251,13 +293,32 @@ public class TestListController {
     public void updateList(TestCaseCatalog testCaseCatalog){
         list.getChildren().clear();
         for (TestCase testCase : testCaseCatalog.findAll()){
-            int tested = testCase.getTestUserCatalog().findAll().size();
-            TestListUnit testListUnit = new TestListUnit(list, testCase);
-            TestListUnitController testListUnitController = testListUnit.getController();
-            testListUnitController.setTested(tested);
-            testListUnitController.populate();
+            double tested = testCase.getTestUserCatalog().findAll().size();
+            float securityScore  = testCase.avgGradeTotal;
+            double test_goal = testCase.getParticipantGoal();
+            double percentageOfGoal = tested/test_goal*100;
+            populateInfo(testCase, tested, securityScore, percentageOfGoal, list);
+
         }
 
+    }
+
+    /**
+     * sets the information to insert into the test list units
+     * @param testCase:TestCase
+     * @param tested:double
+     * @param securityScore:float
+     * @param percentageOfGoal:double
+     * @param list:Vbox
+     */
+    static void populateInfo(TestCase testCase, double tested, float securityScore, double percentageOfGoal, VBox list) {
+        TestListUnit testListUnit = new TestListUnit(list, testCase);
+        TestListUnitController testListUnitController = testListUnit.getController();
+        testListUnitController.setTested(tested);
+        testListUnitController.setSecurityScore(securityScore);
+        testListUnitController.setTestName(testCase.getName());
+        testListUnitController.setPercentage(percentageOfGoal);
+        testListUnitController.populate();
     }
 
 
