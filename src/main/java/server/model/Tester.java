@@ -6,13 +6,17 @@ import java.util.Objects;
 
 public class Tester {
 
+    @JsonProperty("id")
     private int id;
     private String name;
     private String email;
     private TestCaseCatalog testCaseCatalog;
     private TestCase activeTestCase;
+    @JsonProperty("access_token")
+    private String token;
 
     public Tester() {
+        token = null;
         name = null;
         email = null;
         testCaseCatalog = new TestCaseCatalog();
@@ -20,11 +24,20 @@ public class Tester {
     }
 
     public Tester(int id, String name, String email) {
+        token = null;
         this.id = id;
         this.name = name;
         this.email = email;
         testCaseCatalog = new TestCaseCatalog();
         activeTestCase = null;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public long getId() {
@@ -86,6 +99,9 @@ public class Tester {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", testCaseCatalog=" + testCaseCatalog +
+                ", activeTestCase=" + activeTestCase +
+                ", token='" + token + '\'' +
                 '}';
     }
 }

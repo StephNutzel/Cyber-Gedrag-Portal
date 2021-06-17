@@ -16,7 +16,7 @@ public class LoginController {
     @FXML
     public void initialize() {
         emailTextField.setText("n.poelenjee@gmail.com");
-        passwordTextField.setText("$2y$12$kUM4IMH4.K9agpihn/7Wg.zK2u9ww26mDL4NcoQ92IOvzoY6wvy/K");
+        passwordTextField.setText("Np300902");
     }
 
     public void handelLoginButtonPressed() {

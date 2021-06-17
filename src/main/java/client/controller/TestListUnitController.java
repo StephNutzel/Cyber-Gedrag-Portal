@@ -37,6 +37,9 @@ public class TestListUnitController {
 
     public void setSecurityScore(float securityScore) {this.securityscore = securityScore;}
 
+    /**
+     * fills the testlistUnits
+     */
     public void populate() {
         test_list_case.setText("testcase");
         test_list_participants.setText(String.valueOf(tested));
@@ -54,6 +57,9 @@ public class TestListUnitController {
         this.testCase = testCase;
     }
 
+    /**
+     * when the testlistunit is clicked this will redirect the user to the page of that test case
+     */
     public void handleTestCaseClicked(){
         MainServer.tester.setActiveTestCase(testCase);
         MainClient.baseController.handleTestCaseButtonAction();

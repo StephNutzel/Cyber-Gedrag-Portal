@@ -3,6 +3,7 @@ package server.util;
 import org.apache.commons.httpclient.HttpStatus;
 
 import java.io.*;
+import java.net.Authenticator;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -10,35 +11,38 @@ public class HttpConnection {
 
     public static final String API_URL;
 
-    public static Response<String> get(String path) {
-        HttpURLConnection connection = setupConnect("GET", path);
+    public static Response<String> get(String path, String authenticator) {
+        HttpURLConnection connection = setupConnect("GET", path, authenticator);
         return readResponse(connection);
     }
 
-    public static Response<String> put(String path, String jsonString) {
-        HttpURLConnection connection = setupConnect("PUT", path);
+    public static Response<String> put(String path, String jsonString, String authenticator) {
+        HttpURLConnection connection = setupConnect("PUT", path, authenticator);
         sendRequest(jsonString, connection);
         return readResponse(connection);
     }
 
 
-    public static Response<String> post(String path, String jsonString) {
-        HttpURLConnection connection = setupConnect("POST", path);
+    public static Response<String> post(String path, String jsonString, String authenticator) {
+        HttpURLConnection connection = setupConnect("POST", path, authenticator);
         sendRequest(jsonString, connection);
         return readResponse(connection);
     }
 
 
-    public static Response<String> delete(String path) {
-        return readResponse(setupConnect("DELETE", path));
+    public static Response<String> delete(String path, String authenticator) {
+        return readResponse(setupConnect("DELETE", path, authenticator));
     }
 
-    private static HttpURLConnection setupConnect(String method, String path) {
+    private static HttpURLConnection setupConnect(String method, String path, String authenticator) {
         HttpURLConnection connection = null;
         try {
             URL url = new URL(path);
             connection = (HttpURLConnection)url.openConnection();
             connection.setRequestMethod(method);
+            if(authenticator != null) {
+                connection.setRequestProperty("Authorization", "Bearer " + authenticator);
+            }
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             connection.setRequestProperty("Accept", "application/json");
             connection.setDoOutput(true);
@@ -73,6 +77,6 @@ public class HttpConnection {
     }
 
     static {
-        API_URL = "http://40.113.140.15:3000";
+        API_URL = "http://40.113.140.15:8080";
     }
 }
