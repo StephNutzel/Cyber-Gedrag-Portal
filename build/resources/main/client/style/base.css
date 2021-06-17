@@ -151,11 +151,11 @@
 
  /*test list filter*/
 
-#participantsMinValue{
+#participantsMaxValue{
     -fx-background-color: -fx-primary-color;
     -fx-text-fill: white;
 }
-#participantsMaxValue{
+#participantsMinValue{
     -fx-background-color: -fx-primary-color;
     -fx-text-fill: white;
 }
