@@ -28,7 +28,6 @@ public class HomeController {
             TestListUnit testListUnit = new TestListUnit(list2, testCase);
             TestListUnitController testListUnitController = testListUnit.getController();
             testListUnitController.setTested(tested);
-            testListUnitController.setSecurityScore(securityScore);
             testListUnitController.populate();
 
         }
