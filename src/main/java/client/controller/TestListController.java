@@ -176,11 +176,32 @@ public class TestListController {
     }
 
 
+    public TestCaseCatalog TeststateFilter(TestCaseCatalog testCaseCatalog, String testState){
+        TestCaseCatalog filteredCatalog = new TestCaseCatalog();
+        Iterator iterator = testCaseCatalog.findAll().listIterator();
+        do {
+            TestCase tempTestCase = (TestCase) iterator.next();
+            tempTestCase.
+            if (){
+
+            }
+        }while (iterator.hasNext());
+        return filteredCatalog;
+
+    }
+    }
+
+
+
+
+
     /**
      * when the filter button is pressed this methods makes the testcasecatalog go through all of the filters
      */
     public void handleFilter() {
         TestCaseCatalog filteredCatalog = MainServer.tester.getTestCaseCatalog();
+        String testState = (String) activeTestBox.getValue();
+        filteredCatalog =
         filteredCatalog = filterAmountPart(filteredCatalog, maxValue(underValue), minValue(overValue));
         filteredCatalog = filterSecurityScore(filteredCatalog,maxValueSecurity(maxValueFloat),minValueSecurity(minValueFloat));
         updateList(filteredCatalog);
