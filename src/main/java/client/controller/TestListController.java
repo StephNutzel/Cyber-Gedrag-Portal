@@ -167,12 +167,7 @@ public class TestListController {
         if (testState.equals("All")) {
         return testCaseCatalog;
         }
-        else if (testState.equals("Active")) {
-        testStateCheck = true;
-        }
-        else {
-        testStateCheck = false;
-        }
+        else testStateCheck = testState.equals("Active");
         TestCaseCatalog filteredCatalog = new TestCaseCatalog();
         Iterator<TestCase> iterator = testCaseCatalog.findAll().listIterator();
         do {
