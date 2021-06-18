@@ -41,10 +41,10 @@ public class NewTestController {
         String questionFive = questionFiveBox.getText();
         String company = companyBox.getText();
 
-        int companyId = ThreadLocalRandom.current().nextInt(1, Integer.MAX_VALUE);
-        int departmentId = ThreadLocalRandom.current().nextInt(1, Integer.MAX_VALUE);
-        int testcaseId = ThreadLocalRandom.current().nextInt(1, Integer.MAX_VALUE);
-        int questionId = ThreadLocalRandom.current().nextInt(1, Integer.MAX_VALUE - 5);
+        int companyId = ThreadLocalRandom.current().nextInt(1, 32766);
+        int departmentId = ThreadLocalRandom.current().nextInt(1, 32766);
+        int testcaseId = ThreadLocalRandom.current().nextInt(1, 32766);
+        int questionId = ThreadLocalRandom.current().nextInt(1, 32766 - 5);
 
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
@@ -55,16 +55,21 @@ public class NewTestController {
 
         confirmation.showAndWait();
 
-        if(confirmation.getResult() == ButtonType.YES) {
-           try {
-               Communication.newCompany(company, companyId);
-               Communication.newDepartment(departmentName, departmentId, companyId);
-               Communication.newTestCase(testcaseId, dateTime, departmentId, testName, true, testAmount);
-               Communication.postPersonalisationQuestion(questionOne, testcaseId, questionId + 1);
-               Communication.postPersonalisationQuestion(questionTwo, testcaseId, questionId + 2);
-               Communication.postPersonalisationQuestion(questionThree, testcaseId, questionId + 3);
-               Communication.postPersonalisationQuestion(questionFour, testcaseId, questionId + 4);
-               Communication.postPersonalisationQuestion(questionFive, testcaseId, questionId + 5);
+        if (confirmation.getResult() == ButtonType.YES) {
+            try {
+                Communication.newCompany(company, companyId);
+                Communication.newDepartment(departmentName, departmentId, companyId);
+                Communication.newTestCase(testcaseId, dateTime, departmentId, testName, true, testAmount);
+                Communication.postPersonalisationQuestion(questionOne, questionId + 1);
+                Communication.postPersonalisationQuestion(questionTwo, questionId + 2);
+                Communication.postPersonalisationQuestion(questionThree, questionId + 3);
+                Communication.postPersonalisationQuestion(questionFour, questionId + 4);
+                Communication.postPersonalisationQuestion(questionFive, questionId + 5);
+                Communication.postTestCaseQuestion(testcaseId, questionId + 1);
+                Communication.postTestCaseQuestion(testcaseId, questionId + 2);
+                Communication.postTestCaseQuestion(testcaseId, questionId + 3);
+                Communication.postTestCaseQuestion(testcaseId, questionId + 4);
+                Communication.postTestCaseQuestion(testcaseId, questionId + 5);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -75,7 +80,9 @@ public class NewTestController {
             //Generate random id and create new url
             int testCaseId = ThreadLocalRandom.current().nextInt(1, Integer.MAX_VALUE);
             newTestWeb.setText("http://40.113.140.15/register.html?id=" + testCaseId);
-        }
+        } else {
+            System.out.println("test2");
+            }
     }
 
     public void handleCopyButton() {
