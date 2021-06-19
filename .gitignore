@@ -38,3 +38,9 @@ hs_err_pid*
 .gradle/6.3/javaCompile/classAnalysis.bin
 .gradle/checksums/md5-checksums.bin
 .gradle/checksums/sha1-checksums.bin
+.idea/workspace-LAPTOP-II649TAK-2.xml
+.idea/dataSources.local.xml
+.idea/dataSources.local.xml
+.gradle/6.3/executionHistory/executionHistory.bin
+*.bin
+.idea/dataSources.local.xml
