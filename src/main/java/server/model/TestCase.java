@@ -65,6 +65,30 @@ public class TestCase extends AbstractModel {
         testUserCatalog.add(testUser);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getParticipantGoal() {
+        return participantGoal;
+    }
+
+    public void setParticipantGoal(int participantGoal) {
+        this.participantGoal = participantGoal;
+    }
+
+    public boolean isTestState() {
+        return testState;
+    }
+
+    public void setTestState(boolean testState) {
+        this.testState = testState;
+    }
+
     public void calculateAvgGrade() {
         float newAvgGradePassword = 0;
         float newAvgGradePersonalizeTest = 0;
