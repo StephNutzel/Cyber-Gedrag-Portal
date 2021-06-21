@@ -19,17 +19,30 @@ import static java.lang.Integer.parseInt;
 
 public class NewTestController {
 
-    @FXML private TextField testNameBox;
-    @FXML private TextField testAmountBox;
-    @FXML private TextField departmentNameBox;
-    @FXML private TextField questionOneBox;
-    @FXML private TextField questionTwoBox;
-    @FXML private TextField questionThreeBox;
-    @FXML private TextField questionFourBox;
-    @FXML private TextField questionFiveBox;
-    @FXML private Label newTestWeb;
-    @FXML private TextField companyBox;
+    @FXML
+    private TextField testNameBox;
+    @FXML
+    private TextField testAmountBox;
+    @FXML
+    private TextField departmentNameBox;
+    @FXML
+    private TextField questionOneBox;
+    @FXML
+    private TextField questionTwoBox;
+    @FXML
+    private TextField questionThreeBox;
+    @FXML
+    private TextField questionFourBox;
+    @FXML
+    private TextField questionFiveBox;
+    @FXML
+    private Label newTestWeb;
+    @FXML
+    private TextField companyBox;
 
+    public void initialize(){
+        initializeTextfieldInt(testAmountBox);
+    }
     public void handleNewTestButton() {
         String testName = testNameBox.getText();
         int testAmount = parseInt(testAmountBox.getText());
@@ -55,16 +68,16 @@ public class NewTestController {
 
         confirmation.showAndWait();
 
-        if(confirmation.getResult() == ButtonType.YES) {
-           try {
-               Communication.newCompany(company, companyId);
-               Communication.newDepartment(departmentName, departmentId, companyId);
-               Communication.newTestCase(testcaseId, dateTime, departmentId, testName, true, testAmount);
-               Communication.postPersonalisationQuestion(questionOne, testcaseId, questionId + 1);
-               Communication.postPersonalisationQuestion(questionTwo, testcaseId, questionId + 2);
-               Communication.postPersonalisationQuestion(questionThree, testcaseId, questionId + 3);
-               Communication.postPersonalisationQuestion(questionFour, testcaseId, questionId + 4);
-               Communication.postPersonalisationQuestion(questionFive, testcaseId, questionId + 5);
+        if (confirmation.getResult() == ButtonType.YES) {
+            try {
+                Communication.newCompany(company, companyId);
+                Communication.newDepartment(departmentName, departmentId, companyId);
+                Communication.newTestCase(testcaseId, dateTime, departmentId, testName, true, testAmount);
+                Communication.postPersonalisationQuestion(questionOne, testcaseId, questionId + 1);
+                Communication.postPersonalisationQuestion(questionTwo, testcaseId, questionId + 2);
+                Communication.postPersonalisationQuestion(questionThree, testcaseId, questionId + 3);
+                Communication.postPersonalisationQuestion(questionFour, testcaseId, questionId + 4);
+                Communication.postPersonalisationQuestion(questionFive, testcaseId, questionId + 5);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -83,5 +96,13 @@ public class NewTestController {
         StringSelection stringSelection = new StringSelection(url);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
+    }
+
+    public void initializeTextfieldInt(TextField textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
     }
 }
