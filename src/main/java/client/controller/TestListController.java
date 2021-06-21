@@ -20,7 +20,7 @@ public class TestListController {
     @FXML private TextField securityScoreMaximumBox;
     @FXML private TextField securityScoreMinimumBox;
     @FXML private TextField testNameBox;
-//    @FXML private TextField companyNameBox;
+    @FXML private TextField companyNameBox;
 
     int underValue = Integer.MAX_VALUE;
     int overValue = 0;
@@ -203,26 +203,26 @@ public class TestListController {
         return filteredCatalog;
     }
 
-//    /**
-//     * Checks if the name of the company equals the name written in the filter boxes
-//     * @param testCaseCatalog:string
-//     * @return testCaseCatalog
-//     */
-//    public TestCaseCatalog companyNameFilter(TestCaseCatalog testCaseCatalog){
-//        String companyName = companyNameBox.getText();
-//        TestCaseCatalog filteredCatalog = new TestCaseCatalog();
-//        Iterator<TestCase> iterator = testCaseCatalog.findAll().listIterator();
-//        do {
-//            TestCase tempTestCase = (TestCase) iterator.next();
-//            if (companyName.equals("")){
-//                return testCaseCatalog;
-//            }
-//            else if (companyName.equals(tempTestCase.getCompanyName)){
-//                filteredCatalog.add(tempTestCase);
-//            }
-//        }while (iterator.hasNext());
-//        return filteredCatalog;
-//    }
+    /**
+     * Checks if the name of the company equals the name written in the filter boxes
+     * @param testCaseCatalog:string
+     * @return testCaseCatalog
+     */
+    public TestCaseCatalog companyNameFilter(TestCaseCatalog testCaseCatalog){
+        String companyName = companyNameBox.getText();
+        TestCaseCatalog filteredCatalog = new TestCaseCatalog();
+        Iterator<TestCase> iterator = testCaseCatalog.findAll().listIterator();
+        do {
+            TestCase tempTestCase = (TestCase) iterator.next();
+            if (companyName.equals("")){
+                return testCaseCatalog;
+            }
+            else if (companyName.equals(tempTestCase.getCompanyName())){
+                filteredCatalog.add(tempTestCase);
+            }
+        }while (iterator.hasNext());
+        return filteredCatalog;
+    }
 
     /**
      * when the filter button is pressed this methods makes the testcasecatalog go through all of the filters
@@ -231,7 +231,7 @@ public class TestListController {
         TestCaseCatalog filteredCatalog = MainServer.tester.getTestCaseCatalog();
         String testState = activeTestBox.getValue();
         filteredCatalog = testNameFilter(filteredCatalog);
-//        filteredCatalog =companyNameFilter(filteredCatalog);
+        filteredCatalog =companyNameFilter(filteredCatalog);
         filteredCatalog = testStateFilter(filteredCatalog, testState);
         filteredCatalog = filterAmountPart(filteredCatalog, maxValue(underValue), minValue(overValue));
         filteredCatalog = filterSecurityScore(filteredCatalog,maxValueSecurity(maxValueFloat),minValueSecurity(minValueFloat));

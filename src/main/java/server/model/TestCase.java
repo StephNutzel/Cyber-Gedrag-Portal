@@ -16,6 +16,8 @@ public class TestCase extends AbstractModel {
     private int participantGoal;
     @JsonProperty("test_state")
     private boolean testState;
+    @JsonProperty("company_name")
+    private String companyName;
 
     private TestUserCatalog testUserCatalog;
     public float avgGradePasswordTest;
@@ -30,15 +32,25 @@ public class TestCase extends AbstractModel {
         participantGoal = -1;
         testUserCatalog = new TestUserCatalog();
         avgGradeTotal = 0;
+        companyName = "";
     }
 
-    public TestCase(int id, Date date, String name, int participantGoal, TestUserCatalog testUserCatalog, float avgGrade) {
+    public TestCase(int id, Date date, String name, int participantGoal, TestUserCatalog testUserCatalog, float avgGrade, String companyName) {
         super(id);
         this.date = date;
         this.name = name;
         this.participantGoal = participantGoal;
         this.testUserCatalog = testUserCatalog;
         this.avgGradeTotal = avgGrade;
+        this.companyName = companyName;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public long getId() {

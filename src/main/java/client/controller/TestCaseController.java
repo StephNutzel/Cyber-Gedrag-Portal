@@ -25,6 +25,7 @@ public class TestCaseController {
     @FXML private ScrollPane testCaseMain;
 
     private TestCase testCase;
+    private float securityscore;
 
     public TestCaseController() {
         testCase = MainServer.tester.getActiveTestCase();
@@ -32,7 +33,8 @@ public class TestCaseController {
 
     @FXML
     public void initialize() {
-        CircleChartPercentage accountChart = new CircleChartPercentage(accountChartSlot, "Registered", 445, 254);
+        CircleChartPercentage accountChart = new CircleChartPercentage(accountChartSlot, "Registered", MainServer.tester.getActiveTestCase().getParticipantGoal(), MainServer.tester.getActiveTestCase().getTestUserCatalog().findAll().size());
+        System.out.println(MainServer.tester.getActiveTestCase());
         CircleChartGrade averageChart = new CircleChartGrade(averageChartSlot, "Average Grade", MainServer.tester.getActiveTestCase().avgGradeTotal, 1);
 
         FXMLLoader passwordLoader = new FXMLLoader(getClass().getClassLoader().getResource("view/test_password.fxml"));
@@ -52,4 +54,6 @@ public class TestCaseController {
     public void setTestCase(TestCase testCase) {
         this.testCase = testCase;
     }
+
+
 }
