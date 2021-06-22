@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import server.MainServer;
 import server.util.Communication;
 
 import java.awt.*;
@@ -64,6 +65,7 @@ public class NewTestController {
                 Communication.newCompany(company, companyId);
                 Communication.newDepartment(departmentName, departmentId, companyId);
                 Communication.newTestCase(testcaseId, dateTime, departmentId, testName, true, testAmount);
+                Communication.postTesterTestcase(testcaseId, (int) MainServer.tester.getId());
                 Communication.postPersonalisationQuestion(questionOne, questionId + 1);
                 Communication.postPersonalisationQuestion(questionTwo, questionId + 2);
                 Communication.postPersonalisationQuestion(questionThree, questionId + 3);

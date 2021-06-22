@@ -276,6 +276,17 @@ public class Communication {
         return;
     }
 
+    public static void postTesterTestcase(int testCaseId, int testerId) {
+        String jsonString = String.format("{\"testCase\":\"%s\", \"tester\":\"%s\"}", testCaseId, testerId);
+        String path = HttpConnection.API_URL + "/new_testcase/tester";
+        Response<String> response = HttpConnection.post(path, jsonString, MainServer.tester.getToken());
+        if(response.getStatus() != 200) {
+            System.out.println("Server Response: " + response.getStatus());
+            return;
+        }
+        return;
+    }
+
     public static void loadPopupTest(TestUser testUser) {
         PopupTest popupTest = null;
         String jsonString = String.format("" +
