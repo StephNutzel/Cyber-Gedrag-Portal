@@ -57,7 +57,7 @@ public class Communication {
             testCaseCatalog.add(testCase);
             testCase.calculateAvgGrade();
         }
-        MainServer.tester.setActiveTestCase(testCases.get(0));
+        MainServer.tester.setActiveTestCase(testCases.get(3));
     }
 
     public static void loadTestCasesFilter() {
