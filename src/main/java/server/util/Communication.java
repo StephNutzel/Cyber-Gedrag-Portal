@@ -248,12 +248,26 @@ public class Communication {
             System.out.println("Server Response: " + response.getStatus());
             return;
         }
+        else if(response.getStatus() == 200){
+            System.out.println(response);
+        }
         return;
     }
 
-    public static void postPersonalisationQuestion(String question, int testCaseId, int id) {
-        String jsonString = String.format("{\"question\":\"%s\",\"testCase\":\"%s\", \"id\":\"%s\"}", question, testCaseId, id);
+    public static void postPersonalisationQuestion(String question, int id) {
+        String jsonString = String.format("{\"question\":\"%s\", \"id\":\"%s\"}", question, id);
         String path = HttpConnection.API_URL + "/new_testcase/question";
+        Response<String> response = HttpConnection.post(path, jsonString, MainServer.tester.getToken());
+        if(response.getStatus() != 200) {
+            System.out.println("Server Response: " + response.getStatus());
+            return;
+        }
+        return;
+    }
+
+    public static void postTestCaseQuestion(int testCaseId, int id) {
+        String jsonString = String.format("{\"testCase\":\"%s\", \"id\":\"%s\"}", testCaseId, id);
+        String path = HttpConnection.API_URL + "/new_testcase/testcase_question";
         Response<String> response = HttpConnection.post(path, jsonString, MainServer.tester.getToken());
         if(response.getStatus() != 200) {
             System.out.println("Server Response: " + response.getStatus());
