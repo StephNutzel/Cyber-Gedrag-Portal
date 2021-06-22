@@ -82,8 +82,7 @@ public class NewTestController {
             }
 
             //Generate random id and create new url
-            int testCaseId = ThreadLocalRandom.current().nextInt(1, Integer.MAX_VALUE);
-            newTestWeb.setText("http://40.113.140.15/register.html?id=" + testCaseId);
+            newTestWeb.setText("http://40.113.140.15/register.html?id=" + testcaseId);
         } else {
             System.out.println("test2");
             }
