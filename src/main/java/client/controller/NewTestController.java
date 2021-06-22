@@ -30,6 +30,10 @@ public class NewTestController {
     @FXML private Label newTestWeb;
     @FXML private TextField companyBox;
 
+    public void initialize(){
+        initializeTextfieldInt(testAmountBox);
+    }
+
     public void handleNewTestButton() {
         String testName = testNameBox.getText();
         int testAmount = parseInt(testAmountBox.getText());
@@ -90,5 +94,12 @@ public class NewTestController {
         StringSelection stringSelection = new StringSelection(url);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
+    }
+    public void initializeTextfieldInt(TextField textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+        });
     }
 }
